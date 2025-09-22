@@ -29,7 +29,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          glow: "hsl(var(--primary-glow))",
+          light: "hsl(var(--primary-light))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -57,27 +57,27 @@ export default {
           foreground: "hsl(var(--card-foreground))",
           border: "hsl(var(--card-border))",
         },
-        // Status Colors with Glow Effects
+        // Status Colors with Light Variants
         critical: {
           DEFAULT: "hsl(var(--critical))",
-          glow: "hsl(var(--critical-glow))",
+          light: "hsl(var(--critical-light))",
         },
         warning: {
           DEFAULT: "hsl(var(--warning))",
-          glow: "hsl(var(--warning-glow))",
+          light: "hsl(var(--warning-light))",
         },
         success: {
           DEFAULT: "hsl(var(--success))",
-          glow: "hsl(var(--success-glow))",
+          light: "hsl(var(--success-light))",
         },
-        // Chart Colors
+        // Chart Colors - Professional Palette
         chart: {
-          cyan: "hsl(var(--chart-cyan))",
-          orange: "hsl(var(--chart-orange))",
-          green: "hsl(var(--chart-green))",
+          blue: "hsl(var(--chart-blue))",
+          emerald: "hsl(var(--chart-emerald))",
+          amber: "hsl(var(--chart-amber))",
           red: "hsl(var(--chart-red))",
-          yellow: "hsl(var(--chart-yellow))",
           purple: "hsl(var(--chart-purple))",
+          cyan: "hsl(var(--chart-cyan))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -90,22 +90,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
-      // Holographic Gradients
-      backgroundImage: {
-        'holographic': 'linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card-secondary)) 50%, hsl(var(--card)) 100%)',
-        'neon-glow': 'radial-gradient(circle, hsl(var(--primary-glow)) 0%, transparent 70%)',
-        'status-critical': 'radial-gradient(circle, hsl(var(--critical-glow)) 0%, transparent 70%)',
-        'status-warning': 'radial-gradient(circle, hsl(var(--warning-glow)) 0%, transparent 70%)',
-        'status-success': 'radial-gradient(circle, hsl(var(--success-glow)) 0%, transparent 70%)',
-      },
-      // Glow Effects
+      // Professional Shadows
       boxShadow: {
-        'glow': '0 0 20px hsl(var(--primary) / 0.5)',
-        'glow-strong': '0 0 40px hsl(var(--primary) / 0.8)',
-        'critical-glow': '0 0 20px hsl(var(--critical) / 0.6)',
-        'warning-glow': '0 0 20px hsl(var(--warning) / 0.6)',
-        'success-glow': '0 0 20px hsl(var(--success) / 0.6)',
-        'holographic': '0 8px 32px hsl(var(--card-border) / 0.15), 0 0 0 1px hsl(var(--card-border) / 0.2)',
+        'soft': 'var(--shadow-soft)',
+        'medium': 'var(--shadow-medium)',
+        'large': 'var(--shadow-large)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -129,49 +118,42 @@ export default {
             height: "0",
           },
         },
-        // Holographic Effects
-        "pulse-glow": {
-          "0%, 100%": {
+        // Professional Animations
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
             opacity: "1",
-            boxShadow: "0 0 20px hsl(var(--primary) / 0.5)",
-          },
-          "50%": {
-            opacity: "0.8",
-            boxShadow: "0 0 40px hsl(var(--primary) / 0.8)",
+            transform: "translateY(0)",
           },
         },
-        "float": {
-          "0%, 100%": {
-            transform: "translateY(0px)",
-          },
-          "50%": {
-            transform: "translateY(-10px)",
-          },
-        },
-        "led-flicker": {
-          "0%, 100%": { opacity: "1" },
-          "2%": { opacity: "0.9" },
-          "4%": { opacity: "1" },
-          "6%": { opacity: "0.95" },
-          "8%": { opacity: "1" },
-        },
-        "scan-line": {
+        "slide-in-left": {
           "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
         },
-        "holographic-shimmer": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+        "slide-in-right": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-out-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "slide-out-right": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "float": "float 3s ease-in-out infinite",
-        "led-flicker": "led-flicker 0.15s ease-in-out",
-        "scan-line": "scan-line 2s linear infinite",
-        "holographic-shimmer": "holographic-shimmer 3s linear infinite",
+        "fade-in": "fade-in 0.3s ease-out",
+        "slide-in-left": "slide-in-left 0.3s ease-out",
+        "slide-in-right": "slide-in-right 0.3s ease-out",
+        "slide-out-left": "slide-out-left 0.3s ease-out",
+        "slide-out-right": "slide-out-right 0.3s ease-out",
       },
     },
   },
