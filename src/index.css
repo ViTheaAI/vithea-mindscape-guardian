@@ -2,95 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Vithea Dashboard Design System - Holographic Sci-Fi Theme
+All colors MUST be HSL for perfect theme compatibility.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background System */
+    --background: 231 84% 8%;              /* Deep navy #0d1741 */
+    --background-secondary: 239 84% 12%;    /* Slightly lighter navy #1a237e */
+    --foreground: 210 40% 98%;             /* Pure white text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Holographic Card System */
+    --card: 231 50% 10%;                   /* Dark blue cards with transparency */
+    --card-secondary: 239 40% 15%;         /* Secondary card level */
+    --card-foreground: 210 40% 98%;        /* Card text */
+    --card-border: 187 100% 50%;           /* Neon cyan borders #00e5ff */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
+    /* Popover & Modal System */
+    --popover: 231 50% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Neon Accent System */
+    --primary: 187 100% 50%;               /* Neon cyan #00e5ff */
+    --primary-glow: 187 100% 60%;          /* Lighter cyan glow */
+    --primary-foreground: 231 84% 8%;      /* Dark text on neon */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Interactive Elements */
+    --secondary: 239 40% 20%;              /* Interactive backgrounds */
+    --secondary-foreground: 210 40% 98%;   /* Secondary text */
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Status Colors - LED Style */
+    --critical: 0 84% 60%;                 /* Red alerts #ff4444 */
+    --critical-glow: 0 100% 70%;           /* Red glow effect */
+    --warning: 45 100% 60%;                /* Yellow warnings #ffaa00 */
+    --warning-glow: 45 100% 70%;           /* Yellow glow */
+    --success: 140 84% 50%;                /* Green success #00cc66 */
+    --success-glow: 140 100% 60%;          /* Green glow */
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Data Visualization Palette */
+    --chart-cyan: 187 100% 50%;            /* #00e5ff */
+    --chart-orange: 30 100% 60%;           /* #ff8800 */
+    --chart-green: 140 84% 50%;            /* #00cc66 */
+    --chart-red: 0 84% 60%;                /* #ff4444 */
+    --chart-yellow: 45 100% 60%;           /* #ffaa00 */
+    --chart-purple: 270 84% 60%;           /* #8844ff */
 
-    --destructive: 0 62.8% 30.6%;
+    /* UI Element Colors */
+    --muted: 231 30% 25%;                  /* Muted backgrounds */
+    --muted-foreground: 215 20% 65%;       /* Muted text */
+    --accent: 187 80% 25%;                 /* Accent backgrounds */
+    --accent-foreground: 210 40% 98%;      /* Accent text */
+
+    /* Form & Input System */
+    --border: 231 30% 20%;                 /* Standard borders */
+    --input: 231 30% 15%;                  /* Input backgrounds */
+    --input-border: 187 50% 40%;           /* Input borders */
+    --ring: 187 100% 50%;                  /* Focus rings */
+
+    /* Destructive Actions */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Layout */
+    --radius: 0.75rem;                     /* Rounded corners for holographic effect */
+
+    /* Special Effects */
+    --glow-intensity: 0 0 20px;            /* Base glow effect */
+    --glow-strong: 0 0 40px;               /* Strong glow for alerts */
+    --holographic-gradient: linear-gradient(135deg, 
+      hsl(var(--card)) 0%, 
+      hsl(var(--card-secondary)) 50%, 
+      hsl(var(--card)) 100%);
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 231 60% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 231 84% 8%;
+    --sidebar-accent: 231 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 231 30% 20%;
+    --sidebar-ring: 187 100% 50%;
+  }
+
+  /* Dark mode is default for this sci-fi theme */
+  .light {
+    /* Light mode overrides (keep dark theme as primary) */
+    --background: 210 40% 98%;
+    --foreground: 231 84% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 231 84% 8%;
+    /* Keep neon accents even in light mode */
   }
 }
 
