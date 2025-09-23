@@ -49,7 +49,7 @@ const PopulationInsights = () => {
               </div>
               
               <div className="text-xs text-muted-foreground mt-1">
-                {grade.percentage}% 有风险
+                {grade.percentage}% at risk
               </div>
             </div>
           ))}
@@ -60,14 +60,14 @@ const PopulationInsights = () => {
       <Card className="bg-card border border-card-border shadow-medium p-6">
         <div className="flex items-center space-x-3 mb-6">
           <BarChart3 className="h-6 w-6 text-primary" />
-          <h3 className="text-xl font-bold text-foreground">心理健康趋势</h3>
+          <h3 className="text-xl font-bold text-foreground">Mental Health Trends</h3>
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="grid w-full grid-cols-3 bg-card-secondary">
-            <TabsTrigger value="overview" className="text-xs">总览</TabsTrigger>
-            <TabsTrigger value="anxiety" className="text-xs">焦虑</TabsTrigger>
-            <TabsTrigger value="behavioral" className="text-xs">行为</TabsTrigger>
+            <TabsTrigger value="overview" className="text-xs">Overview</TabsTrigger>
+            <TabsTrigger value="anxiety" className="text-xs">Anxiety</TabsTrigger>
+            <TabsTrigger value="behavioral" className="text-xs">Behavioral</TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview" className="mt-4">
@@ -113,15 +113,15 @@ const PopulationInsights = () => {
             <div className="mt-4 flex space-x-4 text-xs">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-chart-red rounded"></div>
-                <span className="text-muted-foreground">焦虑</span>
+                <span className="text-muted-foreground">Anxiety</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-chart-amber rounded"></div>
-                <span className="text-muted-foreground">抑郁</span>
+                <span className="text-muted-foreground">Depression</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-chart-purple rounded"></div>
-                <span className="text-muted-foreground">行为问题</span>
+                <span className="text-muted-foreground">Behavioral Issues</span>
               </div>
             </div>
           </TabsContent>
@@ -130,16 +130,16 @@ const PopulationInsights = () => {
             <div className="space-y-4">
               <div className="text-center">
                 <div className="text-3xl font-mono font-bold text-chart-red">42</div>
-                <p className="text-sm text-muted-foreground">当前焦虑案例</p>
+                <p className="text-sm text-muted-foreground">Current Anxiety Cases</p>
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="text-center">
                   <div className="text-xl font-mono text-warning">+18%</div>
-                  <p className="text-muted-foreground">较上月</p>
+                  <p className="text-muted-foreground">vs Last Month</p>
                 </div>
                 <div className="text-center">
                   <div className="text-xl font-mono text-chart-blue">23%</div>
-                  <p className="text-muted-foreground">12月高峰</p>
+                  <p className="text-muted-foreground">Dec Peak</p>
                 </div>
               </div>
             </div>
@@ -149,16 +149,16 @@ const PopulationInsights = () => {
             <div className="space-y-4">
               <div className="text-center">
                 <div className="text-3xl font-mono font-bold text-chart-purple">35</div>
-                <p className="text-sm text-muted-foreground">行为关注</p>
+                <p className="text-sm text-muted-foreground">Behavioral Concerns</p>
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="text-center">
                   <div className="text-xl font-mono text-success">-12%</div>
-                  <p className="text-muted-foreground">较上月</p>
+                  <p className="text-muted-foreground">vs Last Month</p>
                 </div>
                 <div className="text-center">
                   <div className="text-xl font-mono text-primary">6.2%</div>
-                  <p className="text-muted-foreground">总人数占比</p>
+                  <p className="text-muted-foreground">% of Total Students</p>
                 </div>
               </div>
             </div>
