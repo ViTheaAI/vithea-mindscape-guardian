@@ -15,16 +15,16 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
   const [messages, setMessages] = useState([
     {
       type: "assistant",
-      content: "ARIA在线。我今天如何协助学生心理健康监测？",
+      content: "ARIA online. How can I assist with student mental health monitoring today?",
       timestamp: "09:15"
     }
   ]);
 
   const quickActions = [
-    "显示高风险学生",
-    "生成董事会报告", 
-    "检查资源分配",
-    "危机协议状态"
+    "Show high-risk students",
+    "Generate board report", 
+    "Check resource allocation",
+    "Crisis protocol status"
   ];
 
   const handleSendMessage = () => {
@@ -39,7 +39,7 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
     setTimeout(() => {
       setMessages(prev => [...prev, {
         type: "assistant", 
-        content: `正在处理请求："${message}"。我已识别出3名需要立即关注的高风险学生。您希望我显示他们的档案和建议的干预措施吗？`,
+        content: `Processing request: "${message}". I've identified 3 high-risk students requiring immediate attention. Would you like me to display their profiles and recommended interventions?`,
         timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
       }]);
     }, 1000);
@@ -48,28 +48,8 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
   };
 
   return (
-    <>
-      {/* Chatbot Toggle Button - Fixed Position */}
-      <Button
-        onClick={onToggle}
-        className="fixed top-4 right-4 z-50 rounded-full p-3 bg-primary hover:bg-primary/90 shadow-medium"
-      >
-        {isOpen ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
-      </Button>
-
-      {/* Sidebar Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={onToggle}
-        />
-      )}
-
-      {/* Chatbot Sidebar */}
-      <div className={`fixed top-0 right-0 h-full w-80 bg-card border-l border-border shadow-large z-50 transform transition-transform duration-300 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-        <div className="flex flex-col h-full">
+    <div className="h-full flex flex-col bg-card">
+      <div className="flex flex-col h-full">
           {/* Header */}
           <div className="p-4 border-b border-border bg-card-secondary">
             <div className="flex items-center justify-between">
@@ -79,8 +59,8 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full"></div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">ARIA 助手</h3>
-                  <p className="text-sm text-muted-foreground">AI风险智能助手</p>
+                  <h3 className="text-lg font-semibold text-foreground">ARIA Assistant</h3>
+                  <p className="text-sm text-muted-foreground">AI Risk Intelligence</p>
                 </div>
               </div>
               <Button
@@ -96,7 +76,7 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
 
           {/* Quick Actions */}
           <div className="p-4 border-b border-border">
-            <p className="text-sm font-medium text-foreground mb-3">快速命令</p>
+            <p className="text-sm font-medium text-foreground mb-3">Quick Commands</p>
             <div className="grid grid-cols-1 gap-2">
               {quickActions.map((action, index) => (
                 <Button
@@ -134,7 +114,7 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
               <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="询问ARIA关于学生心理健康..."
+                placeholder="Ask ARIA about student mental health..."
                 className="flex-1 text-sm"
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               />
@@ -156,9 +136,8 @@ const ChatbotSidebar = ({ isOpen, onToggle }: ChatbotSidebarProps) => {
               </Button>
             </div>
           </div>
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 

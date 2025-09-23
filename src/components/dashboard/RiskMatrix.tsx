@@ -3,18 +3,18 @@ import { Progress } from "@/components/ui/progress";
 
 const RiskMatrix = () => {
   const riskData = [
-    { level: "严重", count: 15, percentage: 2.2, color: "critical", bgColor: "bg-critical-light" },
-    { level: "高风险", count: 42, percentage: 6.1, color: "chart-red", bgColor: "bg-red-100" },
-    { level: "中风险", count: 127, percentage: 18.5, color: "warning", bgColor: "bg-warning-light" },
-    { level: "低风险", count: 301, percentage: 43.8, color: "chart-blue", bgColor: "bg-blue-100" },
-    { level: "极低", count: 200, percentage: 29.4, color: "success", bgColor: "bg-success-light" },
+    { level: "Critical", count: 15, percentage: 2.2, color: "critical", bgColor: "bg-critical-light" },
+    { level: "High Risk", count: 42, percentage: 6.1, color: "chart-red", bgColor: "bg-red-100" },
+    { level: "Moderate Risk", count: 127, percentage: 18.5, color: "warning", bgColor: "bg-warning-light" },
+    { level: "Low Risk", count: 301, percentage: 43.8, color: "chart-blue", bgColor: "bg-blue-100" },
+    { level: "Minimal", count: 200, percentage: 29.4, color: "success", bgColor: "bg-success-light" },
   ];
 
   return (
     <Card className="bg-card border border-card-border shadow-medium p-6">
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-foreground mb-2">风险分布矩阵</h3>
-        <p className="text-sm text-muted-foreground">学生心理健康风险评估概览</p>
+        <h3 className="text-xl font-bold text-foreground mb-2">Risk Distribution Matrix</h3>
+        <p className="text-sm text-muted-foreground">Student Mental Health Risk Assessment Overview</p>
       </div>
 
       <div className="space-y-4">
@@ -47,7 +47,7 @@ const RiskMatrix = () => {
       <div className="mt-6 pt-4 border-t border-card-border">
         <div className="text-center">
           <span className="text-3xl font-mono font-bold text-primary">685</span>
-          <p className="text-sm text-muted-foreground">监测学生总数</p>
+          <p className="text-sm text-muted-foreground">Total Students Monitored</p>
         </div>
       </div>
     </Card>

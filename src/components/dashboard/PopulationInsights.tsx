@@ -4,21 +4,21 @@ import { Users, Calendar, BarChart3 } from "lucide-react";
 
 const PopulationInsights = () => {
   const gradeData = [
-    { grade: "幼儿园", total: 45, risk: 8, percentage: 17.8 },
-    { grade: "1-3年级", total: 85, risk: 12, percentage: 14.1 },
-    { grade: "4-6年级", total: 120, risk: 25, percentage: 20.8 },
-    { grade: "7-8年级", total: 95, risk: 28, percentage: 29.5 },
-    { grade: "9-10年级", total: 180, risk: 55, percentage: 30.6 },
-    { grade: "11-12年级", total: 160, risk: 42, percentage: 26.3 },
+    { grade: "Kindergarten", total: 45, risk: 8, percentage: 17.8 },
+    { grade: "Grades 1-3", total: 85, risk: 12, percentage: 14.1 },
+    { grade: "Grades 4-6", total: 120, risk: 25, percentage: 20.8 },
+    { grade: "Grades 7-8", total: 95, risk: 28, percentage: 29.5 },
+    { grade: "Grades 9-10", total: 180, risk: 55, percentage: 30.6 },
+    { grade: "Grades 11-12", total: 160, risk: 42, percentage: 26.3 },
   ];
 
   const timelineData = [
-    { month: "9月", anxiety: 15, depression: 8, behavioral: 12 },
-    { month: "10月", anxiety: 22, depression: 12, behavioral: 18 },
-    { month: "11月", anxiety: 28, depression: 15, behavioral: 22 },
-    { month: "12月", anxiety: 35, depression: 18, behavioral: 28 },
-    { month: "1月", anxiety: 42, depression: 25, behavioral: 35 },
-    { month: "2月", anxiety: 38, depression: 22, behavioral: 30 },
+    { month: "Sep", anxiety: 15, depression: 8, behavioral: 12 },
+    { month: "Oct", anxiety: 22, depression: 12, behavioral: 18 },
+    { month: "Nov", anxiety: 28, depression: 15, behavioral: 22 },
+    { month: "Dec", anxiety: 35, depression: 18, behavioral: 28 },
+    { month: "Jan", anxiety: 42, depression: 25, behavioral: 35 },
+    { month: "Feb", anxiety: 38, depression: 22, behavioral: 30 },
   ];
 
   return (
@@ -27,7 +27,7 @@ const PopulationInsights = () => {
       <Card className="bg-card border border-card-border shadow-medium p-6">
         <div className="flex items-center space-x-3 mb-6">
           <Users className="h-6 w-6 text-primary" />
-          <h3 className="text-xl font-bold text-foreground">年级风险分布</h3>
+          <h3 className="text-xl font-bold text-foreground">Grade Risk Distribution</h3>
         </div>
         
         <div className="space-y-4">

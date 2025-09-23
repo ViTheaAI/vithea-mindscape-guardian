@@ -10,12 +10,12 @@ const CommandCenter = () => {
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">
             <AlertTriangle className="h-8 w-8 text-critical" />
-            <span className="text-sm text-muted-foreground font-medium">高风险</span>
+            <span className="text-sm text-muted-foreground font-medium">High Risk</span>
           </div>
           <div className="text-4xl font-mono font-bold text-critical">
             15
           </div>
-          <p className="text-sm text-critical/80 mt-2">需要立即干预</p>
+          <p className="text-sm text-critical/80 mt-2">Immediate Intervention Required</p>
         </div>
       </Card>
 
@@ -25,12 +25,12 @@ const CommandCenter = () => {
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">
             <Users className="h-8 w-8 text-warning" />
-            <span className="text-sm text-muted-foreground font-medium">中风险</span>
+            <span className="text-sm text-muted-foreground font-medium">Moderate Risk</span>
           </div>
           <div className="text-4xl font-mono font-bold text-warning">
             127
           </div>
-          <p className="text-sm text-warning/80 mt-2">监测与支持</p>
+          <p className="text-sm text-warning/80 mt-2">Monitor & Support</p>
         </div>
       </Card>
 
@@ -40,12 +40,12 @@ const CommandCenter = () => {
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">
             <Shield className="h-8 w-8 text-success" />
-            <span className="text-sm text-muted-foreground font-medium">低风险</span>
+            <span className="text-sm text-muted-foreground font-medium">Low Risk</span>
           </div>
           <div className="text-4xl font-mono font-bold text-success">
             543
           </div>
-          <p className="text-sm text-success/80 mt-2">稳定良好</p>
+          <p className="text-sm text-success/80 mt-2">Stable & Good</p>
         </div>
       </Card>
 
@@ -55,12 +55,12 @@ const CommandCenter = () => {
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">
             <TrendingUp className="h-8 w-8 text-primary" />
-            <span className="text-sm text-muted-foreground font-medium">7天趋势</span>
+            <span className="text-sm text-muted-foreground font-medium">7-Day Trend</span>
           </div>
           <div className="text-4xl font-mono font-bold text-primary">
             -8%
           </div>
-          <p className="text-sm text-primary/80 mt-2">本周风险下降</p>
+          <p className="text-sm text-primary/80 mt-2">Risk Decreased This Week</p>
         </div>
       </Card>
     </div>
