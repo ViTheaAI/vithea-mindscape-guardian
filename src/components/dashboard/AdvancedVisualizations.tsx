@@ -92,12 +92,26 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
 
   return (
     <div className="space-y-6">
+      {/* Summary Card */}
+      <Card className="bg-primary/5 border border-primary/20 p-4">
+        <p className="text-sm text-foreground leading-relaxed">
+          <strong>Advanced Analytics:</strong> Multi-dimensional analysis reveals complex relationships between academic performance, mental health risks, and intervention outcomes. 
+          Radar charts identify anxiety (65%) and academic stress (78%) as dominant concerns. Bubble analysis shows inverse correlation between academic performance and risk levels. 
+          Gender analysis indicates females report 63% higher anxiety rates than males.
+          {filters.grade !== 'all' && ` Analysis filtered to ${filters.grade}.`}
+          {filters.gender !== 'all' && ` Showing ${filters.gender} student data.`}
+        </p>
+      </Card>
+      
       {/* Multi-line Trend Analysis */}
       <Card className="bg-card border border-card-border shadow-medium p-6">
         <h3 className="text-xl font-bold text-foreground mb-4 flex items-center">
           <TrendingUp className="h-5 w-5 mr-2 text-primary" />
           Mental Health Trends Over Time
         </h3>
+        <p className="text-xs text-muted-foreground mb-3">
+          Six-month trend showing total cases increased 21% from August to January, with anxiety driving the majority of growth
+        </p>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={trendData}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -126,6 +140,9 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
             <Brain className="h-5 w-5 mr-2 text-primary" />
             Mental Health Risk Profile
           </h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Comparative analysis across six key mental health dimensions - academic stress and anxiety show highest severity
+          </p>
           <ResponsiveContainer width="100%" height={250}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="hsl(var(--border))" />
@@ -149,6 +166,9 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
             <Activity className="h-5 w-5 mr-2 text-primary" />
             Academic Performance vs Risk
           </h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Bubble size represents student count - shows inverse relationship between academic performance and mental health risk
+          </p>
           <ResponsiveContainer width="100%" height={250}>
             <ScatterChart data={bubbleData}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -188,25 +208,13 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
       </div>
 
       {/* Second Row - More Visualizations */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Treemap - Mental Health Categories */}
-        <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4 flex items-center">
-            <Users className="h-5 w-5 mr-2 text-primary" />
-            Issue Distribution
-          </h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <Treemap
-              data={treemapData}
-              dataKey="size"
-              aspectRatio={4/3}
-            />
-          </ResponsiveContainer>
-        </Card>
-
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gender Comparison Bar Chart */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
           <h3 className="text-lg font-bold text-foreground mb-4">Gender Analysis</h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Comparison of mental health concerns across gender identities - females show higher anxiety, males higher behavioral issues
+          </p>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={genderComparisonData}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -223,6 +231,9 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
         {/* Word Cloud Style Concerns */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
           <h3 className="text-lg font-bold text-foreground mb-4">Top Concerns</h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Weighted frequency of reported concerns - size and intensity indicate severity
+          </p>
           <div className="space-y-3">
             {wordCloudConcerns.map((concern, index) => (
               <div key={concern.text} className="flex items-center justify-between">
@@ -243,7 +254,12 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
       </div>
 
       {/* Progress Gauges Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <Card className="bg-card border border-card-border shadow-soft p-6 mb-6">
+        <h3 className="text-lg font-bold text-foreground mb-2">System Health Indicators</h3>
+        <p className="text-xs text-muted-foreground mb-4">
+          Real-time monitoring of risk levels, intervention capacity, resource usage, and crisis response readiness
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {riskTrendGauges.map((gauge, index) => (
           <Card key={gauge.title} className="bg-card border border-card-border shadow-soft p-4">
             <div className="text-center">
@@ -276,7 +292,8 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
             </div>
           </Card>
         ))}
-      </div>
+        </div>
+      </Card>
 
       {/* Intervention Effectiveness */}
       <Card className="bg-card border border-card-border shadow-medium p-6">
@@ -284,6 +301,9 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
           <AlertTriangle className="h-5 w-5 mr-2 text-primary" />
           Intervention Effectiveness Analysis
         </h3>
+        <p className="text-xs text-muted-foreground mb-4">
+          Success rates of different intervention approaches - family counseling (82%) and crisis intervention (85%) show highest effectiveness
+        </p>
         <div className="space-y-4">
           {interventionEffectiveness.map((item, index) => (
             <div key={item.intervention} className="space-y-2">

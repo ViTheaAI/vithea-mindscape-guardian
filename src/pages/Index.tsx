@@ -7,6 +7,7 @@ import PopulationInsights from "@/components/dashboard/PopulationInsights";
 import ChatbotSidebar from "@/components/dashboard/ChatbotSidebar";
 import MasterControls from "@/components/dashboard/MasterControls";
 import AdvancedVisualizations from "@/components/dashboard/AdvancedVisualizations";
+import EventsTimeline from "@/components/dashboard/EventsTimeline";
 
 const Index = () => {
   const [activeView, setActiveView] = useState("dashboard");
@@ -133,20 +134,43 @@ const Index = () => {
               />
 
               {/* Command Center Metrics */}
-              <CommandCenter />
+              <CommandCenter filters={{
+                grade: selectedGrade,
+                riskLevel: selectedRiskLevel,
+                timeRange: selectedTimeRange,
+                gender: selectedGender
+              }} />
 
               {/* Main Dashboard Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Risk Matrix */}
                 <div className="lg:col-span-1">
-                  <RiskMatrix />
+                  <RiskMatrix filters={{
+                    grade: selectedGrade,
+                    riskLevel: selectedRiskLevel,
+                    timeRange: selectedTimeRange,
+                    gender: selectedGender
+                  }} />
                 </div>
                 
                 {/* Population Insights - Takes 2 columns */}
                 <div className="lg:col-span-2">
-                  <PopulationInsights />
+                  <PopulationInsights filters={{
+                    grade: selectedGrade,
+                    riskLevel: selectedRiskLevel,
+                    timeRange: selectedTimeRange,
+                    gender: selectedGender
+                  }} />
                 </div>
               </div>
+
+              {/* Events Timeline - New Section */}
+              <EventsTimeline filters={{
+                grade: selectedGrade,
+                riskLevel: selectedRiskLevel,
+                timeRange: selectedTimeRange,
+                gender: selectedGender
+              }} />
 
               {/* Advanced Visualizations */}
               <AdvancedVisualizations 

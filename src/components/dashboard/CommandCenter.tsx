@@ -1,9 +1,35 @@
 import { Card } from "@/components/ui/card";
 import { AlertTriangle, Users, TrendingUp, Shield } from "lucide-react";
 
-const CommandCenter = () => {
+interface CommandCenterProps {
+  filters: {
+    grade: string;
+    riskLevel: string;
+    timeRange: string;
+    gender: string;
+  };
+}
+
+const CommandCenter = ({ filters }: CommandCenterProps) => {
+  // Dynamic summary based on filters
+  const getSummary = () => {
+    let summary = "Current dashboard shows overall mental health status";
+    if (filters.grade !== 'all') summary += ` for ${filters.grade}`;
+    if (filters.riskLevel !== 'all') summary += `, focusing on ${filters.riskLevel} cases`;
+    if (filters.timeRange !== 'all') summary += ` over the ${filters.timeRange}`;
+    return summary + ". Critical cases require immediate attention, while moderate cases need ongoing monitoring.";
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="space-y-4">
+      {/* Summary Card */}
+      <Card className="bg-primary/5 border border-primary/20 p-4">
+        <p className="text-sm text-foreground leading-relaxed">
+          <strong>Quick Overview:</strong> {getSummary()} The risk levels shown below are actively tracked and updated based on student assessments and counselor reports.
+        </p>
+      </Card>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {/* Critical Risk Counter */}
       <Card className="bg-card border border-card-border shadow-medium p-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-critical-light opacity-50"></div>
@@ -63,6 +89,7 @@ const CommandCenter = () => {
           <p className="text-sm text-primary/80 mt-2">Risk Decreased This Week</p>
         </div>
       </Card>
+      </div>
     </div>
   );
 };

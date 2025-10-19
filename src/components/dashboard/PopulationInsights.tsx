@@ -2,7 +2,16 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Users, Calendar, BarChart3 } from "lucide-react";
 
-const PopulationInsights = () => {
+interface PopulationInsightsProps {
+  filters: {
+    grade: string;
+    riskLevel: string;
+    timeRange: string;
+    gender: string;
+  };
+}
+
+const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
   const gradeData = [
     { grade: "Kindergarten", total: 45, risk: 8, percentage: 17.8 },
     { grade: "Grades 1-3", total: 85, risk: 12, percentage: 14.1 },
@@ -22,7 +31,18 @@ const PopulationInsights = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      {/* Summary Card */}
+      <Card className="bg-primary/5 border border-primary/20 p-4">
+        <p className="text-sm text-foreground leading-relaxed">
+          <strong>Population Insights:</strong> Grade-level analysis reveals risk increases with age, peaking at 30.6% in Grades 9-10. 
+          Mental health trends show seasonal patterns, with anxiety cases rising 180% from September to January. 
+          Depression and behavioral concerns follow similar trajectories, suggesting systemic stress factors.
+          {filters.timeRange !== 'all' && ` Data shown for ${filters.timeRange}.`}
+        </p>
+      </Card>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Grade Distribution */}
       <Card className="bg-card border border-card-border shadow-medium p-6">
         <div className="flex items-center space-x-3 mb-6">
@@ -165,6 +185,7 @@ const PopulationInsights = () => {
           </TabsContent>
         </Tabs>
       </Card>
+      </div>
     </div>
   );
 };

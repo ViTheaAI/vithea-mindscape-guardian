@@ -1,7 +1,16 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
-const RiskMatrix = () => {
+interface RiskMatrixProps {
+  filters: {
+    grade: string;
+    riskLevel: string;
+    timeRange: string;
+    gender: string;
+  };
+}
+
+const RiskMatrix = ({ filters }: RiskMatrixProps) => {
   const riskData = [
     { level: "Critical", count: 15, percentage: 2.2, color: "critical", bgColor: "bg-critical-light" },
     { level: "High Risk", count: 42, percentage: 6.1, color: "chart-red", bgColor: "bg-red-100" },
@@ -11,11 +20,23 @@ const RiskMatrix = () => {
   ];
 
   return (
-    <Card className="bg-card border border-card-border shadow-medium p-6">
-      <div className="mb-6">
-        <h3 className="text-xl font-bold text-foreground mb-2">Risk Distribution Matrix</h3>
-        <p className="text-sm text-muted-foreground">Student Mental Health Risk Assessment Overview</p>
-      </div>
+    <div className="space-y-4">
+      {/* Summary Card */}
+      <Card className="bg-primary/5 border border-primary/20 p-4">
+        <p className="text-sm text-foreground leading-relaxed">
+          <strong>Risk Distribution Analysis:</strong> This matrix categorizes students by risk severity. 
+          Critical (2.2%) and High Risk (6.1%) students need immediate intervention, representing 8.3% of the population. 
+          Moderate risk cases (18.5%) require regular monitoring. The distribution shows most students (73.2%) are in low/minimal risk categories.
+          {filters.grade !== 'all' && ` Filtered to ${filters.grade}.`}
+          {filters.riskLevel !== 'all' && ` Showing ${filters.riskLevel} cases only.`}
+        </p>
+      </Card>
+      
+      <Card className="bg-card border border-card-border shadow-medium p-6">
+        <div className="mb-6">
+          <h3 className="text-xl font-bold text-foreground mb-2">Risk Distribution Matrix</h3>
+          <p className="text-sm text-muted-foreground">Student Mental Health Risk Assessment Overview</p>
+        </div>
 
       <div className="space-y-4">
         {riskData.map((risk, index) => (
@@ -50,7 +71,8 @@ const RiskMatrix = () => {
           <p className="text-sm text-muted-foreground">Total Students Monitored</p>
         </div>
       </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
