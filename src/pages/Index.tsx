@@ -115,9 +115,10 @@ const Index = () => {
         <main className={`flex-1 p-6 bg-background transition-all duration-300 ${sidebarOpen ? 'lg:ml-0' : ''}`}>
           {activeView === "dashboard" && (
             <div className="space-y-6 animate-fade-in">
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-2">Mental Health Command Center</h2>
-                <p className="text-muted-foreground">Real-time Student Mental Health Monitoring & Risk Assessment System</p>
+              {/* Page Header */}
+              <div className="mb-6">
+                <h2 className="text-3xl font-bold text-foreground mb-2">Mental Health Dashboard</h2>
+                <p className="text-muted-foreground">Real-time monitoring and analytics</p>
               </div>
 
               {/* Master Controls */}
@@ -133,71 +134,99 @@ const Index = () => {
                 onRefresh={handleRefresh}
               />
 
-              {/* Command Center Metrics */}
-              <CommandCenter filters={{
-                grade: selectedGrade,
-                riskLevel: selectedRiskLevel,
-                timeRange: selectedTimeRange,
-                gender: selectedGender
-              }} />
-
-              {/* Main Dashboard Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Risk Matrix */}
-                <div className="lg:col-span-1">
-                  <RiskMatrix filters={{
-                    grade: selectedGrade,
-                    riskLevel: selectedRiskLevel,
-                    timeRange: selectedTimeRange,
-                    gender: selectedGender
-                  }} />
-                </div>
-                
-                {/* Population Insights - Takes 2 columns */}
-                <div className="lg:col-span-2">
-                  <PopulationInsights filters={{
-                    grade: selectedGrade,
-                    riskLevel: selectedRiskLevel,
-                    timeRange: selectedTimeRange,
-                    gender: selectedGender
-                  }} />
-                </div>
-              </div>
-
-              {/* Events Timeline - New Section */}
-              <EventsTimeline filters={{
-                grade: selectedGrade,
-                riskLevel: selectedRiskLevel,
-                timeRange: selectedTimeRange,
-                gender: selectedGender
-              }} />
-
-              {/* Advanced Visualizations */}
-              <AdvancedVisualizations 
-                filters={{
+              {/* 1. Quick Overview - Key Metrics */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                  <AlertTriangle className="h-5 w-5 mr-2 text-primary" />
+                  Quick Overview
+                </h3>
+                <CommandCenter filters={{
                   grade: selectedGrade,
                   riskLevel: selectedRiskLevel,
                   timeRange: selectedTimeRange,
                   gender: selectedGender
-                }}
-              />
+                }} />
+              </div>
 
-              {/* Emergency Protocols */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-card border border-critical/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow">
-                  <AlertTriangle className="h-8 w-8 text-critical mx-auto mb-2" />
-                  <h4 className="font-semibold text-critical">Crisis Protocol</h4>
-                  <p className="text-xs text-muted-foreground mt-1">Emergency Response System</p>
+              {/* 2. Risk Analysis - Distribution and Patterns */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                  <BarChart3 className="h-5 w-5 mr-2 text-primary" />
+                  Risk Analysis
+                </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <div className="lg:col-span-1">
+                    <RiskMatrix filters={{
+                      grade: selectedGrade,
+                      riskLevel: selectedRiskLevel,
+                      timeRange: selectedTimeRange,
+                      gender: selectedGender
+                    }} />
+                  </div>
+                  
+                  <div className="lg:col-span-2">
+                    <PopulationInsights filters={{
+                      grade: selectedGrade,
+                      riskLevel: selectedRiskLevel,
+                      timeRange: selectedTimeRange,
+                      gender: selectedGender
+                    }} />
+                  </div>
                 </div>
-                <div className="bg-card border border-warning/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow">
-                  <Users className="h-8 w-8 text-warning mx-auto mb-2" />
-                  <h4 className="font-semibold text-warning">Staff Alert</h4>
-                  <p className="text-xs text-muted-foreground mt-1">Notify Counseling Team</p>
-                </div>
-                <div className="bg-card border border-primary/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow">
-                  <FileText className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <h4 className="font-semibold text-primary">Generate Report</h4>
-                  <p className="text-xs text-muted-foreground mt-1">Executive Summary</p>
+              </div>
+
+              {/* 3. Events & Patterns - Root Cause Analysis */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                  <Brain className="h-5 w-5 mr-2 text-primary" />
+                  Events & Pattern Analysis
+                </h3>
+                <EventsTimeline filters={{
+                  grade: selectedGrade,
+                  riskLevel: selectedRiskLevel,
+                  timeRange: selectedTimeRange,
+                  gender: selectedGender
+                }} />
+              </div>
+
+              {/* 4. Detailed Analytics - Deep Dive */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                  <Users className="h-5 w-5 mr-2 text-primary" />
+                  Detailed Analytics
+                </h3>
+                <AdvancedVisualizations 
+                  filters={{
+                    grade: selectedGrade,
+                    riskLevel: selectedRiskLevel,
+                    timeRange: selectedTimeRange,
+                    gender: selectedGender
+                  }}
+                />
+              </div>
+
+              {/* 5. Quick Actions */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                  <Shield className="h-5 w-5 mr-2 text-primary" />
+                  Quick Actions
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-card border border-critical/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
+                    <AlertTriangle className="h-8 w-8 text-critical mx-auto mb-2" />
+                    <h4 className="font-semibold text-critical">Crisis Protocol</h4>
+                    <p className="text-xs text-muted-foreground mt-1">Emergency Response</p>
+                  </div>
+                  <div className="bg-card border border-warning/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
+                    <Users className="h-8 w-8 text-warning mx-auto mb-2" />
+                    <h4 className="font-semibold text-warning">Alert Team</h4>
+                    <p className="text-xs text-muted-foreground mt-1">Notify Counselors</p>
+                  </div>
+                  <div className="bg-card border border-primary/20 rounded-lg p-4 text-center shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
+                    <FileText className="h-8 w-8 text-primary mx-auto mb-2" />
+                    <h4 className="font-semibold text-primary">Generate Report</h4>
+                    <p className="text-xs text-muted-foreground mt-1">Executive Summary</p>
+                  </div>
                 </div>
               </div>
             </div>

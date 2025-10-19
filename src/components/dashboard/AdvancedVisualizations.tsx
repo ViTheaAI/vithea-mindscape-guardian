@@ -92,15 +92,13 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
 
   return (
     <div className="space-y-6">
-      {/* Summary Card */}
-      <Card className="bg-primary/5 border border-primary/20 p-4">
-        <p className="text-sm text-foreground leading-relaxed">
-          <strong>Advanced Analytics:</strong> Multi-dimensional analysis reveals complex relationships between academic performance, mental health risks, and intervention outcomes. 
-          Radar charts identify anxiety (65%) and academic stress (78%) as dominant concerns. Bubble analysis shows inverse correlation between academic performance and risk levels. 
-          Gender analysis indicates females report 63% higher anxiety rates than males.
-          {filters.grade !== 'all' && ` Analysis filtered to ${filters.grade}.`}
-          {filters.gender !== 'all' && ` Showing ${filters.gender} student data.`}
-        </p>
+      {/* Concise Summary */}
+      <Card className="bg-primary/5 border border-primary/20 p-3">
+        <ul className="text-xs text-foreground space-y-1">
+          <li>• Top concerns: <strong>Academic stress (78%)</strong> and <strong>anxiety (65%)</strong></li>
+          <li>• Females show <strong>63% higher</strong> anxiety rates than males</li>
+          <li>• Family counseling most effective (<strong>82% success</strong>)</li>
+        </ul>
       </Card>
       
       {/* Multi-line Trend Analysis */}

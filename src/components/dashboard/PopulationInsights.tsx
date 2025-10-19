@@ -32,14 +32,12 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Summary Card */}
-      <Card className="bg-primary/5 border border-primary/20 p-4">
-        <p className="text-sm text-foreground leading-relaxed">
-          <strong>Population Insights:</strong> Grade-level analysis reveals risk increases with age, peaking at 30.6% in Grades 9-10. 
-          Mental health trends show seasonal patterns, with anxiety cases rising 180% from September to January. 
-          Depression and behavioral concerns follow similar trajectories, suggesting systemic stress factors.
-          {filters.timeRange !== 'all' && ` Data shown for ${filters.timeRange}.`}
-        </p>
+      {/* Concise Summary */}
+      <Card className="bg-primary/5 border border-primary/20 p-3">
+        <ul className="text-xs text-foreground space-y-1">
+          <li>• Risk increases with grade level (peaks at <strong>30.6%</strong> in Grades 9-10)</li>
+          <li>• Anxiety cases up <strong>180%</strong> from Sep to Jan</li>
+        </ul>
       </Card>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -21,15 +21,12 @@ const RiskMatrix = ({ filters }: RiskMatrixProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Summary Card */}
-      <Card className="bg-primary/5 border border-primary/20 p-4">
-        <p className="text-sm text-foreground leading-relaxed">
-          <strong>Risk Distribution Analysis:</strong> This matrix categorizes students by risk severity. 
-          Critical (2.2%) and High Risk (6.1%) students need immediate intervention, representing 8.3% of the population. 
-          Moderate risk cases (18.5%) require regular monitoring. The distribution shows most students (73.2%) are in low/minimal risk categories.
-          {filters.grade !== 'all' && ` Filtered to ${filters.grade}.`}
-          {filters.riskLevel !== 'all' && ` Showing ${filters.riskLevel} cases only.`}
-        </p>
+      {/* Concise Summary */}
+      <Card className="bg-primary/5 border border-primary/20 p-3">
+        <ul className="text-xs text-foreground space-y-1">
+          <li>• <strong>8.3%</strong> need urgent intervention (Critical + High Risk)</li>
+          <li>• <strong>73.2%</strong> are stable (Low + Minimal)</li>
+        </ul>
       </Card>
       
       <Card className="bg-card border border-card-border shadow-medium p-6">

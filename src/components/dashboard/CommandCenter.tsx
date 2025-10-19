@@ -22,11 +22,13 @@ const CommandCenter = ({ filters }: CommandCenterProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Summary Card */}
-      <Card className="bg-primary/5 border border-primary/20 p-4">
-        <p className="text-sm text-foreground leading-relaxed">
-          <strong>Quick Overview:</strong> {getSummary()} The risk levels shown below are actively tracked and updated based on student assessments and counselor reports.
-        </p>
+      {/* Concise Summary */}
+      <Card className="bg-primary/5 border border-primary/20 p-3">
+        <ul className="text-xs text-foreground space-y-1">
+          <li>• <strong>15 critical</strong> cases need immediate action</li>
+          <li>• <strong>127 moderate</strong> risk students require monitoring</li>
+          {filters.grade !== 'all' && <li>• Filtered to {filters.grade}</li>}
+        </ul>
       </Card>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
