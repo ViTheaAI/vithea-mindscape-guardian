@@ -40,13 +40,13 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
   ];
 
   const bubbleData = [
-    { x: 85, y: 12, z: 45, grade: 'Grade 9' },
-    { x: 78, y: 18, z: 62, grade: 'Grade 10' },
-    { x: 92, y: 8, z: 28, grade: 'Grade 11' },
-    { x: 88, y: 15, z: 53, grade: 'Grade 12' },
     { x: 76, y: 22, z: 71, grade: 'Grade 8' },
+    { x: 78, y: 18, z: 62, grade: 'Grade 10' },
     { x: 82, y: 14, z: 39, grade: 'Grade 7' },
-  ];
+    { x: 85, y: 12, z: 45, grade: 'Grade 9' },
+    { x: 88, y: 15, z: 53, grade: 'Grade 12' },
+    { x: 92, y: 8, z: 28, grade: 'Grade 11' },
+  ].sort((a, b) => a.x - b.x);
 
   const treemapData = [
     { name: 'Anxiety Disorders', size: 245, fill: 'hsl(var(--warning))' },
@@ -211,7 +211,11 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
                 dataKey="z" 
                 fill="hsl(var(--primary))"
                 fillOpacity={0.6}
-              />
+              >
+                {bubbleData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} r={entry.z / 3} />
+                ))}
+              </Scatter>
             </ScatterChart>
           </ResponsiveContainer>
         </Card>

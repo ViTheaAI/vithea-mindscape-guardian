@@ -67,19 +67,19 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
   // Mental health trend data aligned with events
   const trendData = [
     { date: 'Aug 21', anxiety: 35, depression: 22, stress: 28, social: 10, total: 95, event: null, eventDesc: null },
-    { date: 'Aug 28', anxiety: 42, depression: 25, stress: 31, social: 10, total: 108, event: 'School Year Begins', eventDesc: 'Initial adjustment period' },
-    { date: 'Sep 4', anxiety: 48, depression: 28, stress: 32, social: 10, total: 118, event: null, eventDesc: null },
-    { date: 'Sep 15', anxiety: 65, depression: 32, stress: 35, social: 10, total: 142, event: 'First Major Exams', eventDesc: 'Increased stress and anxiety' },
-    { date: 'Sep 22', anxiety: 52, depression: 28, stress: 35, social: 10, total: 125, event: null, eventDesc: null },
-    { date: 'Oct 1', anxiety: 48, depression: 26, stress: 34, social: 10, total: 118, event: null, eventDesc: null },
-    { date: 'Oct 15', anxiety: 45, depression: 25, stress: 32, social: 10, total: 112, event: null, eventDesc: null },
-    { date: 'Oct 31', anxiety: 38, depression: 20, stress: 30, social: 10, total: 98, event: 'Halloween Event', eventDesc: 'Social bonding activities' },
-    { date: 'Nov 10', anxiety: 72, depression: 38, stress: 38, social: 10, total: 158, event: 'Midterm Exams', eventDesc: 'Peak academic stress period' },
-    { date: 'Nov 20', anxiety: 58, depression: 32, stress: 35, social: 10, total: 135, event: null, eventDesc: null },
-    { date: 'Dec 1', anxiety: 62, depression: 35, stress: 35, social: 10, total: 142, event: null, eventDesc: null },
-    { date: 'Dec 20', anxiety: 32, depression: 18, stress: 25, social: 10, total: 85, event: 'Winter Break', eventDesc: 'Stress relief and recovery' },
-    { date: 'Jan 8', anxiety: 55, depression: 28, stress: 35, social: 10, total: 128, event: 'Return to School', eventDesc: 'Post-holiday adjustment' },
-    { date: 'Jan 20', anxiety: 48, depression: 26, stress: 34, social: 10, total: 118, event: null, eventDesc: null },
+    { date: 'Aug 28', anxiety: 42, depression: 25, stress: 31, social: 12, total: 110, event: 'School Year Begins', eventDesc: 'Initial adjustment period' },
+    { date: 'Sep 4', anxiety: 48, depression: 28, stress: 32, social: 14, total: 122, event: null, eventDesc: null },
+    { date: 'Sep 15', anxiety: 65, depression: 32, stress: 45, social: 8, total: 150, event: 'First Major Exams', eventDesc: 'Increased stress and anxiety' },
+    { date: 'Sep 22', anxiety: 52, depression: 28, stress: 35, social: 11, total: 126, event: null, eventDesc: null },
+    { date: 'Oct 1', anxiety: 48, depression: 26, stress: 34, social: 13, total: 121, event: null, eventDesc: null },
+    { date: 'Oct 15', anxiety: 45, depression: 25, stress: 32, social: 15, total: 117, event: null, eventDesc: null },
+    { date: 'Oct 31', anxiety: 38, depression: 20, stress: 30, social: 18, total: 106, event: 'Halloween Event', eventDesc: 'Social bonding activities' },
+    { date: 'Nov 10', anxiety: 72, depression: 38, stress: 52, social: 7, total: 169, event: 'Midterm Exams', eventDesc: 'Peak academic stress period' },
+    { date: 'Nov 20', anxiety: 58, depression: 32, stress: 38, social: 10, total: 138, event: null, eventDesc: null },
+    { date: 'Dec 1', anxiety: 62, depression: 35, stress: 42, social: 9, total: 148, event: null, eventDesc: null },
+    { date: 'Dec 20', anxiety: 32, depression: 18, stress: 25, social: 16, total: 91, event: 'Winter Break', eventDesc: 'Stress relief and recovery' },
+    { date: 'Jan 8', anxiety: 55, depression: 28, stress: 35, social: 11, total: 129, event: 'Return to School', eventDesc: 'Post-holiday adjustment' },
+    { date: 'Jan 20', anxiety: 48, depression: 26, stress: 34, social: 13, total: 121, event: null, eventDesc: null },
   ];
 
   // Intervention strategies based on patterns
@@ -133,10 +133,10 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
       {/* Concise Summary */}
       <Card className="bg-primary/5 border border-primary/20 p-3">
         <ul className="text-xs text-foreground space-y-1">
-          <li>• Exam periods show <strong>40-60% spike</strong> in anxiety and stress cases</li>
-          <li>• Social events reduce anxiety by <strong>15-20%</strong>, breaks by <strong>30%</strong></li>
-          <li>• Depression rises <strong>45%</strong> during high-stress periods</li>
-          <li>• Social skills concerns stable at <strong>~10 cases/week</strong></li>
+          <li>• <strong>Stress</strong> peaks at 52 cases during midterms, <strong>anxiety</strong> reaches 72 cases</li>
+          <li>• <strong>Depression</strong> rises 73% during high-stress periods (38 cases at peak)</li>
+          <li>• <strong>Social concerns</strong> drop to 7-8 during exams, increase to 16-18 during positive events</li>
+          <li>• Winter break reduces <strong>all concerns by 40-50%</strong></li>
         </ul>
       </Card>
 
@@ -151,16 +151,6 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
         
         <ResponsiveContainer width="100%" height={350}>
           <AreaChart data={trendData}>
-            <defs>
-              <linearGradient id="anxietyGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(var(--warning))" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="hsl(var(--warning))" stopOpacity={0.05}/>
-              </linearGradient>
-              <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.2}/>
-                <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0.05}/>
-              </linearGradient>
-            </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis 
               dataKey="date" 
@@ -188,8 +178,8 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
                       )}
                       <p className="text-sm font-semibold mb-1">Total Cases: <strong>{data.total}</strong></p>
                       <div className="space-y-0.5 text-xs">
-                        <p>Anxiety: <strong className="text-chart-red">{data.anxiety}</strong></p>
-                        <p>Depression: <strong className="text-chart-amber">{data.depression}</strong></p>
+                        <p>Anxiety: <strong className="text-warning">{data.anxiety}</strong></p>
+                        <p>Depression: <strong className="text-critical">{data.depression}</strong></p>
                         <p>Stress: <strong className="text-chart-purple">{data.stress}</strong></p>
                         <p>Social: <strong className="text-chart-blue">{data.social}</strong></p>
                       </div>
@@ -205,9 +195,9 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
               <ReferenceLine
                 key={index}
                 x={event.date}
-                stroke="hsl(var(--chart-purple))"
-                strokeDasharray="3 3"
-                strokeWidth={2}
+                stroke="hsl(var(--muted-foreground))"
+                strokeDasharray="5 5"
+                strokeWidth={1}
               >
                 <Label 
                   value={event.name.substring(0, 15)}
@@ -220,20 +210,57 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
             
             <Area 
               type="monotone" 
-              dataKey="total" 
-              stroke="hsl(var(--primary))" 
-              fill="url(#totalGradient)"
+              dataKey="anxiety" 
+              stroke="hsl(var(--warning))" 
+              fill="hsl(var(--warning))"
+              fillOpacity={0.1}
               strokeWidth={2}
             />
             <Area 
               type="monotone" 
-              dataKey="anxiety" 
-              stroke="hsl(var(--warning))" 
-              fill="url(#anxietyGradient)"
-              strokeWidth={3}
+              dataKey="depression" 
+              stroke="hsl(var(--critical))" 
+              fill="hsl(var(--critical))"
+              fillOpacity={0.1}
+              strokeWidth={2}
+            />
+            <Area 
+              type="monotone" 
+              dataKey="stress" 
+              stroke="hsl(var(--chart-purple))" 
+              fill="hsl(var(--chart-purple))"
+              fillOpacity={0.1}
+              strokeWidth={2}
+            />
+            <Area 
+              type="monotone" 
+              dataKey="social" 
+              stroke="hsl(var(--chart-blue))" 
+              fill="hsl(var(--chart-blue))"
+              fillOpacity={0.1}
+              strokeWidth={2}
             />
           </AreaChart>
         </ResponsiveContainer>
+        
+        <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs">
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 bg-warning rounded"></div>
+            <span className="text-muted-foreground">Anxiety</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 bg-critical rounded"></div>
+            <span className="text-muted-foreground">Depression</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 bg-chart-purple rounded"></div>
+            <span className="text-muted-foreground">Stress</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 bg-chart-blue rounded"></div>
+            <span className="text-muted-foreground">Social Issues</span>
+          </div>
+        </div>
       </Card>
 
       {/* Proactive Intervention Strategies with Effectiveness */}
@@ -246,9 +273,9 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
         {/* Summary */}
         <Card className="bg-primary/5 border border-primary/20 p-3 mb-4">
           <ul className="text-xs text-foreground space-y-1">
-            <li>• Pre-exam workshops reduce peak anxiety by <strong>28%</strong></li>
-            <li>• Extended counselor hours improve stress management <strong>35%</strong></li>
-            <li>• Crisis response readiness at <strong>92%</strong> capacity</li>
+            <li>• Extended counselor hours show <strong>82% effectiveness</strong>, resource utilization at <strong>82%</strong></li>
+            <li>• Crisis response team <strong>92% ready</strong>, intervention capacity at <strong>45%</strong></li>
+            <li>• Current risk level at <strong>68%</strong>, pre-exam workshops reduce anxiety by <strong>28%</strong></li>
           </ul>
         </Card>
         

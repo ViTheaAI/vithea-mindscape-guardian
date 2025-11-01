@@ -13,9 +13,6 @@ interface PopulationInsightsProps {
 
 const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
   const gradeData = [
-    { grade: "Grade 6", total: 52, risk: 12, percentage: 23.1 },
-    { grade: "Grade 7", total: 48, risk: 15, percentage: 31.3 },
-    { grade: "Grade 8", total: 45, risk: 13, percentage: 28.9 },
     { grade: "Grade 9", total: 92, risk: 28, percentage: 30.4 },
     { grade: "Grade 10", total: 88, risk: 27, percentage: 30.7 },
     { grade: "Grade 11", total: 85, risk: 22, percentage: 25.9 },
@@ -36,7 +33,7 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
       {/* Concise Summary */}
       <Card className="bg-primary/5 border border-primary/20 p-3">
         <ul className="text-xs text-foreground space-y-1">
-          <li>• Risk increases with grade level (peaks at <strong>30.6%</strong> in Grades 9-10)</li>
+          <li>• Grade 10 shows highest risk rate at <strong>30.7%</strong></li>
           <li>• Anxiety cases up <strong>180%</strong> from Sep to Jan</li>
         </ul>
       </Card>
