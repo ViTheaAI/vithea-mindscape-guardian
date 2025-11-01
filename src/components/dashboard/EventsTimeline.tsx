@@ -66,20 +66,20 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
 
   // Mental health trend data aligned with events
   const trendData = [
-    { date: 'Aug 21', anxiety: 35, total: 95, event: null },
-    { date: 'Aug 28', anxiety: 42, total: 108, event: 'School Year Begins' },
-    { date: 'Sep 4', anxiety: 48, total: 118, event: null },
-    { date: 'Sep 15', anxiety: 65, total: 142, event: 'First Major Exams' },
-    { date: 'Sep 22', anxiety: 52, total: 125, event: null },
-    { date: 'Oct 1', anxiety: 48, total: 118, event: null },
-    { date: 'Oct 15', anxiety: 45, total: 112, event: null },
-    { date: 'Oct 31', anxiety: 38, total: 98, event: 'Halloween Event' },
-    { date: 'Nov 10', anxiety: 72, total: 158, event: 'Midterm Exams' },
-    { date: 'Nov 20', anxiety: 58, total: 135, event: null },
-    { date: 'Dec 1', anxiety: 62, total: 142, event: null },
-    { date: 'Dec 20', anxiety: 32, total: 85, event: 'Winter Break' },
-    { date: 'Jan 8', anxiety: 55, total: 128, event: 'Return to School' },
-    { date: 'Jan 20', anxiety: 48, total: 118, event: null },
+    { date: 'Aug 21', anxiety: 35, depression: 22, stress: 28, social: 10, total: 95, event: null, eventDesc: null },
+    { date: 'Aug 28', anxiety: 42, depression: 25, stress: 31, social: 10, total: 108, event: 'School Year Begins', eventDesc: 'Initial adjustment period' },
+    { date: 'Sep 4', anxiety: 48, depression: 28, stress: 32, social: 10, total: 118, event: null, eventDesc: null },
+    { date: 'Sep 15', anxiety: 65, depression: 32, stress: 35, social: 10, total: 142, event: 'First Major Exams', eventDesc: 'Increased stress and anxiety' },
+    { date: 'Sep 22', anxiety: 52, depression: 28, stress: 35, social: 10, total: 125, event: null, eventDesc: null },
+    { date: 'Oct 1', anxiety: 48, depression: 26, stress: 34, social: 10, total: 118, event: null, eventDesc: null },
+    { date: 'Oct 15', anxiety: 45, depression: 25, stress: 32, social: 10, total: 112, event: null, eventDesc: null },
+    { date: 'Oct 31', anxiety: 38, depression: 20, stress: 30, social: 10, total: 98, event: 'Halloween Event', eventDesc: 'Social bonding activities' },
+    { date: 'Nov 10', anxiety: 72, depression: 38, stress: 38, social: 10, total: 158, event: 'Midterm Exams', eventDesc: 'Peak academic stress period' },
+    { date: 'Nov 20', anxiety: 58, depression: 32, stress: 35, social: 10, total: 135, event: null, eventDesc: null },
+    { date: 'Dec 1', anxiety: 62, depression: 35, stress: 35, social: 10, total: 142, event: null, eventDesc: null },
+    { date: 'Dec 20', anxiety: 32, depression: 18, stress: 25, social: 10, total: 85, event: 'Winter Break', eventDesc: 'Stress relief and recovery' },
+    { date: 'Jan 8', anxiety: 55, depression: 28, stress: 35, social: 10, total: 128, event: 'Return to School', eventDesc: 'Post-holiday adjustment' },
+    { date: 'Jan 20', anxiety: 48, depression: 26, stress: 34, social: 10, total: 118, event: null, eventDesc: null },
   ];
 
   // Intervention strategies based on patterns
@@ -133,9 +133,10 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
       {/* Concise Summary */}
       <Card className="bg-primary/5 border border-primary/20 p-3">
         <ul className="text-xs text-foreground space-y-1">
-          <li>• Exams correlate with <strong>40-60% spike</strong> in anxiety</li>
-          <li>• Social events & breaks reduce concerns by <strong>15-30%</strong></li>
-          <li>• Early intervention cuts recovery time by <strong>40%</strong></li>
+          <li>• Exam periods show <strong>40-60% spike</strong> in anxiety and stress cases</li>
+          <li>• Social events reduce anxiety by <strong>15-20%</strong>, breaks by <strong>30%</strong></li>
+          <li>• Depression rises <strong>45%</strong> during high-stress periods</li>
+          <li>• Social skills concerns stable at <strong>~10 cases/week</strong></li>
         </ul>
       </Card>
 
@@ -180,10 +181,18 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
                     <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
                       <p className="font-semibold text-foreground mb-2">{data.date}</p>
                       {data.event && (
-                        <p className="text-xs text-primary mb-2 font-medium">📅 {data.event}</p>
+                        <>
+                          <p className="text-xs text-primary mb-1 font-medium">📅 {data.event}</p>
+                          <p className="text-xs text-muted-foreground mb-2">{data.eventDesc}</p>
+                        </>
                       )}
-                      <p className="text-sm">Total Cases: <strong>{data.total}</strong></p>
-                      <p className="text-sm">Anxiety: <strong className="text-warning">{data.anxiety}</strong></p>
+                      <p className="text-sm font-semibold mb-1">Total Cases: <strong>{data.total}</strong></p>
+                      <div className="space-y-0.5 text-xs">
+                        <p>Anxiety: <strong className="text-chart-red">{data.anxiety}</strong></p>
+                        <p>Depression: <strong className="text-chart-amber">{data.depression}</strong></p>
+                        <p>Stress: <strong className="text-chart-purple">{data.stress}</strong></p>
+                        <p>Social: <strong className="text-chart-blue">{data.social}</strong></p>
+                      </div>
                     </div>
                   );
                 }
@@ -227,72 +236,77 @@ const EventsTimeline = ({ filters }: EventsTimelineProps) => {
         </ResponsiveContainer>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Event Calendar Timeline */}
-        <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4">Event Impact Timeline</h3>
-          <p className="text-xs text-muted-foreground mb-4">
-            Key school events and their measured impact on student mental health
-          </p>
-          
-          <div className="space-y-4">
-            {events.map((event, index) => (
-              <div key={index} className="flex items-start space-x-3 pb-4 border-b border-border last:border-0">
-                <div className="flex-shrink-0 mt-1">
-                  {getImpactIcon(event.impact)}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold text-foreground">{event.name}</span>
-                    <span className="text-xs text-muted-foreground">{event.date}</span>
+      {/* Proactive Intervention Strategies with Effectiveness */}
+      <Card className="bg-card border border-card-border shadow-medium p-6">
+        <h3 className="text-lg font-bold text-foreground mb-2">Proactive Intervention Strategies</h3>
+        <p className="text-xs text-muted-foreground mb-4">
+          Evidence-based interventions showing measured improvements in student wellness outcomes
+        </p>
+        
+        {/* Summary */}
+        <Card className="bg-primary/5 border border-primary/20 p-3 mb-4">
+          <ul className="text-xs text-foreground space-y-1">
+            <li>• Pre-exam workshops reduce peak anxiety by <strong>28%</strong></li>
+            <li>• Extended counselor hours improve stress management <strong>35%</strong></li>
+            <li>• Crisis response readiness at <strong>92%</strong> capacity</li>
+          </ul>
+        </Card>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {interventionStrategies.map((item, index) => (
+            <div key={index} className="bg-card-secondary border border-card-border rounded-lg p-4 space-y-3">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <span className="text-sm font-semibold text-foreground">{item.strategy}</span>
+                    {item.status === 'implemented' ? (
+                      <Badge className="bg-success text-white text-xs">Active</Badge>
+                    ) : (
+                      <Badge className="bg-chart-blue text-white text-xs">Recommended</Badge>
+                    )}
                   </div>
-                  <Badge className={`${getEventBadgeColor(event.type)} text-xs mb-1`}>
-                    {event.type}
-                  </Badge>
-                  <p className="text-xs text-muted-foreground">{event.description}</p>
+                  <p className="text-xs text-muted-foreground">Trigger: {item.trigger}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* Intervention Strategies */}
-        <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4">Proactive Intervention Strategies</h3>
-          <p className="text-xs text-muted-foreground mb-4">
-            Data-driven interventions designed based on identified event patterns
-          </p>
-          
-          <div className="space-y-4">
-            {interventionStrategies.map((item, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <span className="text-sm font-semibold text-foreground">{item.strategy}</span>
-                      {item.status === 'implemented' ? (
-                        <Badge className="bg-success text-white text-xs">Active</Badge>
-                      ) : (
-                        <Badge className="bg-chart-blue text-white text-xs">Recommended</Badge>
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-2">Trigger: {item.trigger}</p>
-                  </div>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-muted-foreground">Effectiveness</span>
+                  <span className="font-mono font-bold text-primary">{item.effectiveness}%</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex-1 bg-border rounded-full h-2 mr-3">
-                    <div 
-                      className="bg-primary h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${item.effectiveness}%` }}
-                    ></div>
-                  </div>
-                  <span className="text-sm font-mono text-primary">{item.effectiveness}%</span>
+                <div className="flex-1 bg-border rounded-full h-2">
+                  <div 
+                    className="bg-primary h-2 rounded-full transition-all duration-500"
+                    style={{ width: `${item.effectiveness}%` }}
+                  ></div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+        
+        {/* System Health Indicators */}
+        <div className="mt-6 pt-6 border-t border-card-border">
+          <h4 className="text-sm font-semibold text-foreground mb-3">System Health Indicators</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="text-center bg-card-secondary rounded-lg p-3">
+              <div className="text-2xl font-mono font-bold text-warning">68%</div>
+              <p className="text-xs text-muted-foreground mt-1">Current Risk</p>
+            </div>
+            <div className="text-center bg-card-secondary rounded-lg p-3">
+              <div className="text-2xl font-mono font-bold text-chart-blue">45%</div>
+              <p className="text-xs text-muted-foreground mt-1">Capacity</p>
+            </div>
+            <div className="text-center bg-card-secondary rounded-lg p-3">
+              <div className="text-2xl font-mono font-bold text-success">82%</div>
+              <p className="text-xs text-muted-foreground mt-1">Resources</p>
+            </div>
+            <div className="text-center bg-card-secondary rounded-lg p-3">
+              <div className="text-2xl font-mono font-bold text-primary">92%</div>
+              <p className="text-xs text-muted-foreground mt-1">Crisis Ready</p>
+            </div>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Card>
 
       {/* Key Insights */}
       <Card className="bg-gradient-to-br from-primary/10 to-chart-blue/10 border border-primary/20 p-6">

@@ -25,9 +25,9 @@ const CommandCenter = ({ filters }: CommandCenterProps) => {
       {/* Concise Summary */}
       <Card className="bg-primary/5 border border-primary/20 p-3">
         <ul className="text-xs text-foreground space-y-1">
-          <li>• <strong>15 critical</strong> cases need immediate action</li>
-          <li>• <strong>127 moderate</strong> risk students require monitoring</li>
-          {filters.grade !== 'all' && <li>• Filtered to {filters.grade}</li>}
+          <li>• <strong>685</strong> students receiving support</li>
+          <li>• <strong>57</strong> students need urgent attention</li>
+          <li>• Anxiety cases up <strong>18%</strong> this month</li>
         </ul>
       </Card>
       

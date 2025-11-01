@@ -107,8 +107,7 @@ const MasterControls = ({
               <SelectItem value="all">All Students</SelectItem>
               <SelectItem value="male">Male</SelectItem>
               <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="non-binary">Non-Binary</SelectItem>
-              <SelectItem value="prefer-not-to-say">Prefer Not to Say</SelectItem>
+              <SelectItem value="other">Other/Prefer Not to Say</SelectItem>
             </SelectContent>
           </Select>
         </div>

@@ -13,21 +13,22 @@ interface PopulationInsightsProps {
 
 const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
   const gradeData = [
-    { grade: "Kindergarten", total: 45, risk: 8, percentage: 17.8 },
-    { grade: "Grades 1-3", total: 85, risk: 12, percentage: 14.1 },
-    { grade: "Grades 4-6", total: 120, risk: 25, percentage: 20.8 },
-    { grade: "Grades 7-8", total: 95, risk: 28, percentage: 29.5 },
-    { grade: "Grades 9-10", total: 180, risk: 55, percentage: 30.6 },
-    { grade: "Grades 11-12", total: 160, risk: 42, percentage: 26.3 },
+    { grade: "Grade 6", total: 52, risk: 12, percentage: 23.1 },
+    { grade: "Grade 7", total: 48, risk: 15, percentage: 31.3 },
+    { grade: "Grade 8", total: 45, risk: 13, percentage: 28.9 },
+    { grade: "Grade 9", total: 92, risk: 28, percentage: 30.4 },
+    { grade: "Grade 10", total: 88, risk: 27, percentage: 30.7 },
+    { grade: "Grade 11", total: 85, risk: 22, percentage: 25.9 },
+    { grade: "Grade 12", total: 75, risk: 20, percentage: 26.7 },
   ];
 
   const timelineData = [
-    { month: "Sep", anxiety: 15, depression: 8, behavioral: 12 },
-    { month: "Oct", anxiety: 22, depression: 12, behavioral: 18 },
-    { month: "Nov", anxiety: 28, depression: 15, behavioral: 22 },
-    { month: "Dec", anxiety: 35, depression: 18, behavioral: 28 },
-    { month: "Jan", anxiety: 42, depression: 25, behavioral: 35 },
-    { month: "Feb", anxiety: 38, depression: 22, behavioral: 30 },
+    { month: "Sep", anxiety: 15, depression: 8, stress: 12, social: 10 },
+    { month: "Oct", anxiety: 22, depression: 12, stress: 18, social: 14 },
+    { month: "Nov", anxiety: 28, depression: 15, stress: 22, social: 16 },
+    { month: "Dec", anxiety: 35, depression: 18, stress: 28, social: 20 },
+    { month: "Jan", anxiety: 42, depression: 25, stress: 35, social: 24 },
+    { month: "Feb", anxiety: 38, depression: 22, stress: 30, social: 22 },
   ];
 
   return (
@@ -82,10 +83,11 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-card-secondary">
+            <TabsList className="grid w-full grid-cols-4 bg-card-secondary">
             <TabsTrigger value="overview" className="text-xs">Overview</TabsTrigger>
             <TabsTrigger value="anxiety" className="text-xs">Anxiety</TabsTrigger>
-            <TabsTrigger value="behavioral" className="text-xs">Behavioral</TabsTrigger>
+            <TabsTrigger value="depression" className="text-xs">Depression</TabsTrigger>
+            <TabsTrigger value="stress" className="text-xs">Stress</TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview" className="mt-4">
@@ -94,7 +96,7 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
                 <div key={month.month} className="flex items-center space-x-4">
                   <span className="text-sm font-mono w-8 text-muted-foreground">{month.month}</span>
                   <div className="flex-1 relative">
-                    <div className="flex space-x-1 h-6">
+                  <div className="flex space-x-1 h-6">
                       <div 
                         className="bg-chart-red rounded-sm transition-all duration-500" 
                         style={{ 
@@ -108,27 +110,35 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
                         style={{ 
                           width: `${(month.depression / 50) * 100}%`, 
                           minWidth: '2px',
-                          animationDelay: `${index * 0.1 + 0.05}s`
+                          animationDelay: `${index * 0.1 + 0.03}s`
                         }}
                       ></div>
                       <div 
                         className="bg-chart-purple rounded-sm transition-all duration-500" 
                         style={{ 
-                          width: `${(month.behavioral / 50) * 100}%`, 
+                          width: `${(month.stress / 50) * 100}%`, 
                           minWidth: '2px',
-                          animationDelay: `${index * 0.1 + 0.1}s`
+                          animationDelay: `${index * 0.1 + 0.06}s`
+                        }}
+                      ></div>
+                      <div 
+                        className="bg-chart-blue rounded-sm transition-all duration-500" 
+                        style={{ 
+                          width: `${(month.social / 50) * 100}%`, 
+                          minWidth: '2px',
+                          animationDelay: `${index * 0.1 + 0.09}s`
                         }}
                       ></div>
                     </div>
                   </div>
                   <span className="text-sm font-mono text-foreground w-8">
-                    {month.anxiety + month.depression + month.behavioral}
+                    {month.anxiety + month.depression + month.stress + month.social}
                   </span>
                 </div>
               ))}
             </div>
             
-            <div className="mt-4 flex space-x-4 text-xs">
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-chart-red rounded"></div>
                 <span className="text-muted-foreground">Anxiety</span>
@@ -139,7 +149,11 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-chart-purple rounded"></div>
-                <span className="text-muted-foreground">Behavioral Issues</span>
+                <span className="text-muted-foreground">Stress</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-chart-blue rounded"></div>
+                <span className="text-muted-foreground">Social Skills</span>
               </div>
             </div>
           </TabsContent>
@@ -163,19 +177,38 @@ const PopulationInsights = ({ filters }: PopulationInsightsProps) => {
             </div>
           </TabsContent>
           
-          <TabsContent value="behavioral" className="mt-4">
+          <TabsContent value="depression" className="mt-4">
             <div className="space-y-4">
               <div className="text-center">
-                <div className="text-3xl font-mono font-bold text-chart-purple">35</div>
-                <p className="text-sm text-muted-foreground">Behavioral Concerns</p>
+                <div className="text-3xl font-mono font-bold text-chart-amber">25</div>
+                <p className="text-sm text-muted-foreground">Current Depression Cases</p>
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="text-center">
-                  <div className="text-xl font-mono text-success">-12%</div>
+                  <div className="text-xl font-mono text-warning">+14%</div>
                   <p className="text-muted-foreground">vs Last Month</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-mono text-primary">6.2%</div>
+                  <div className="text-xl font-mono text-chart-blue">5.2%</div>
+                  <p className="text-muted-foreground">% of Total Students</p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="stress" className="mt-4">
+            <div className="space-y-4">
+              <div className="text-center">
+                <div className="text-3xl font-mono font-bold text-chart-purple">35</div>
+                <p className="text-sm text-muted-foreground">Academic Stress Cases</p>
+              </div>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="text-center">
+                  <div className="text-xl font-mono text-critical">+22%</div>
+                  <p className="text-muted-foreground">vs Last Month</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-mono text-primary">7.3%</div>
                   <p className="text-muted-foreground">% of Total Students</p>
                 </div>
               </div>

@@ -60,7 +60,7 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
   const genderComparisonData = [
     { name: 'Male', anxiety: 38, depression: 29, behavioral: 45 },
     { name: 'Female', anxiety: 62, depression: 48, behavioral: 31 },
-    { name: 'Non-Binary', anxiety: 48, depression: 41, behavioral: 35 },
+    { name: 'Others', anxiety: 48, depression: 41, behavioral: 35 },
   ];
 
   const interventionEffectiveness = [
@@ -95,78 +95,86 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
       {/* Concise Summary */}
       <Card className="bg-primary/5 border border-primary/20 p-3">
         <ul className="text-xs text-foreground space-y-1">
-          <li>• Top concerns: <strong>Academic stress (78%)</strong> and <strong>anxiety (65%)</strong></li>
-          <li>• Females show <strong>63% higher</strong> anxiety rates than males</li>
-          <li>• Family counseling most effective (<strong>82% success</strong>)</li>
+          <li>• Academic stress <strong>highest concern (78%)</strong>, anxiety second <strong>(65%)</strong></li>
+          <li>• Lower GPA correlates with <strong>2.5x higher</strong> risk levels</li>
+          <li>• Females show <strong>63% higher</strong> anxiety than males</li>
         </ul>
       </Card>
       
-      {/* Multi-line Trend Analysis */}
-      <Card className="bg-card border border-card-border shadow-medium p-6">
-        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center">
-          <TrendingUp className="h-5 w-5 mr-2 text-primary" />
-          Mental Health Trends Over Time
-        </h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Six-month trend showing total cases increased 21% from August to January, with anxiety driving the majority of growth
-        </p>
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={trendData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" />
-            <YAxis stroke="hsl(var(--muted-foreground))" />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: 'hsl(var(--card))', 
-                border: '1px solid hsl(var(--border))',
-                borderRadius: '8px'
-              }}
-            />
-            <Line type="monotone" dataKey="anxiety" stroke="hsl(var(--warning))" strokeWidth={3} />
-            <Line type="monotone" dataKey="depression" stroke="hsl(var(--critical))" strokeWidth={3} />
-            <Line type="monotone" dataKey="behavioral" stroke="hsl(var(--chart-blue))" strokeWidth={3} />
-            <Line type="monotone" dataKey="total" stroke="hsl(var(--primary))" strokeWidth={3} strokeDasharray="5 5" />
-          </LineChart>
-        </ResponsiveContainer>
-      </Card>
 
       {/* Grid Layout for Multiple Visualizations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Radar Chart - Risk Profile */}
+        {/* Radar Chart - Risk Profile with Baseline */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4 flex items-center">
+          <h3 className="text-lg font-bold text-foreground mb-2 flex items-center">
             <Brain className="h-5 w-5 mr-2 text-primary" />
             Mental Health Risk Profile
           </h3>
           <p className="text-xs text-muted-foreground mb-3">
-            Comparative analysis across six key mental health dimensions - academic stress and anxiety show highest severity
+            Current vs baseline comparison showing academic stress and anxiety elevated above historical norms
           </p>
+          
+          <Card className="bg-primary/5 border border-primary/20 p-2 mb-3">
+            <ul className="text-xs text-foreground space-y-1">
+              <li>• Academic stress <strong>56% above</strong> baseline</li>
+              <li>• Anxiety <strong>30% above</strong> baseline</li>
+            </ul>
+          </Card>
+          
           <ResponsiveContainer width="100%" height={250}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="hsl(var(--border))" />
-              <PolarAngleAxis dataKey="subject" tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }} />
+              <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }} />
               <PolarRadiusAxis tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }} />
               <Radar
-                name="Risk Level"
+                name="Baseline"
+                dataKey="fullMark"
+                stroke="hsl(var(--muted-foreground))"
+                fill="hsl(var(--muted-foreground))"
+                fillOpacity={0.05}
+                strokeWidth={1}
+                strokeDasharray="3 3"
+              />
+              <Radar
+                name="Current"
                 dataKey="value"
                 stroke="hsl(var(--primary))"
                 fill="hsl(var(--primary))"
-                fillOpacity={0.2}
+                fillOpacity={0.3}
                 strokeWidth={2}
               />
             </RadarChart>
           </ResponsiveContainer>
+          
+          <div className="mt-3 flex justify-center space-x-4 text-xs">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 border-2 border-muted-foreground border-dashed rounded"></div>
+              <span className="text-muted-foreground">Baseline (50%)</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-primary rounded"></div>
+              <span className="text-muted-foreground">Current Level</span>
+            </div>
+          </div>
         </Card>
 
         {/* Bubble Chart - Grade vs Performance vs Risk */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4 flex items-center">
+          <h3 className="text-lg font-bold text-foreground mb-2 flex items-center">
             <Activity className="h-5 w-5 mr-2 text-primary" />
             Academic Performance vs Risk
           </h3>
           <p className="text-xs text-muted-foreground mb-3">
-            Bubble size represents student count - shows inverse relationship between academic performance and mental health risk
+            Bubble size shows student population - inverse correlation between GPA and risk severity
           </p>
+          
+          <Card className="bg-primary/5 border border-primary/20 p-2 mb-3">
+            <ul className="text-xs text-foreground space-y-1">
+              <li>• Students with GPA <strong>&lt;80%</strong> show <strong>2.5x higher</strong> risk</li>
+              <li>• Grade 10 highest population <strong>(71 students)</strong></li>
+            </ul>
+          </Card>
+          
           <ResponsiveContainer width="100%" height={250}>
             <ScatterChart data={bubbleData}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -174,13 +182,13 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
                 dataKey="x" 
                 name="Academic Performance" 
                 stroke="hsl(var(--muted-foreground))"
-                label={{ value: 'Academic Performance (%)', position: 'insideBottom', offset: -5 }}
+                label={{ value: 'Academic Performance (%)', position: 'insideBottom', offset: -5, fontSize: 11 }}
               />
               <YAxis 
                 dataKey="y" 
                 name="Risk Level" 
                 stroke="hsl(var(--muted-foreground))"
-                label={{ value: 'Risk Level', angle: -90, position: 'insideLeft' }}
+                label={{ value: 'Risk Level', angle: -90, position: 'insideLeft', fontSize: 11 }}
               />
               <Tooltip 
                 cursor={{ strokeDasharray: '3 3' }}
@@ -190,16 +198,20 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
                     return (
                       <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
                         <p className="font-semibold">{data.grade}</p>
-                        <p>Academic: {data.x}%</p>
-                        <p>Risk Level: {data.y}</p>
-                        <p>Students: {data.z}</p>
+                        <p className="text-sm">Academic: {data.x}%</p>
+                        <p className="text-sm">Risk Level: {data.y}</p>
+                        <p className="text-sm">Students: {data.z}</p>
                       </div>
                     );
                   }
                   return null;
                 }}
               />
-              <Scatter dataKey="z" fill="hsl(var(--primary))" />
+              <Scatter 
+                dataKey="z" 
+                fill="hsl(var(--primary))"
+                fillOpacity={0.6}
+              />
             </ScatterChart>
           </ResponsiveContainer>
         </Card>
@@ -209,15 +221,23 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gender Comparison Bar Chart */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4">Gender Analysis</h3>
+          <h3 className="text-lg font-bold text-foreground mb-2">Gender Analysis</h3>
           <p className="text-xs text-muted-foreground mb-3">
-            Comparison of mental health concerns across gender identities - females show higher anxiety, males higher behavioral issues
+            Mental health concerns by gender - females 63% higher anxiety, males 45% higher behavioral
           </p>
+          
+          <Card className="bg-primary/5 border border-primary/20 p-2 mb-3">
+            <ul className="text-xs text-foreground space-y-1">
+              <li>• Female anxiety <strong>63% higher</strong> than male</li>
+              <li>• Male behavioral issues <strong>45% higher</strong></li>
+            </ul>
+          </Card>
+          
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={genderComparisonData}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
-              <YAxis stroke="hsl(var(--muted-foreground))" />
+              <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 11 }} />
+              <YAxis stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 11 }} />
               <Tooltip />
               <Bar dataKey="anxiety" fill="hsl(var(--warning))" />
               <Bar dataKey="depression" fill="hsl(var(--critical))" />
@@ -228,10 +248,17 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
 
         {/* Word Cloud Style Concerns */}
         <Card className="bg-card border border-card-border shadow-medium p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4">Top Concerns</h3>
+          <h3 className="text-lg font-bold text-foreground mb-2">Top Concerns</h3>
           <p className="text-xs text-muted-foreground mb-3">
-            Weighted frequency of reported concerns - size and intensity indicate severity
+            Most reported concerns ranked by frequency - larger text indicates higher severity
           </p>
+          
+          <Card className="bg-primary/5 border border-primary/20 p-2 mb-3">
+            <ul className="text-xs text-foreground space-y-1">
+              <li>• <strong>Future anxiety (84%)</strong> and <strong>academic pressure (89%)</strong> top concerns</li>
+            </ul>
+          </Card>
+          
           <div className="space-y-3">
             {wordCloudConcerns.map((concern, index) => (
               <div key={concern.text} className="flex items-center justify-between">
@@ -250,73 +277,6 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
           </div>
         </Card>
       </div>
-
-      {/* Progress Gauges Row */}
-      <Card className="bg-card border border-card-border shadow-soft p-6 mb-6">
-        <h3 className="text-lg font-bold text-foreground mb-2">System Health Indicators</h3>
-        <p className="text-xs text-muted-foreground mb-4">
-          Real-time monitoring of risk levels, intervention capacity, resource usage, and crisis response readiness
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {riskTrendGauges.map((gauge, index) => (
-          <Card key={gauge.title} className="bg-card border border-card-border shadow-soft p-4">
-            <div className="text-center">
-              <h4 className="text-sm font-medium text-foreground mb-3">{gauge.title}</h4>
-              <div className="relative w-20 h-20 mx-auto mb-2">
-                <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="30"
-                    stroke="hsl(var(--border))"
-                    strokeWidth="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="30"
-                    stroke={`hsl(var(--${gauge.color}))`}
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={`${(gauge.value / gauge.max) * 188.5} 188.5`}
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-lg font-bold text-foreground">{gauge.value}%</span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        ))}
-        </div>
-      </Card>
-
-      {/* Intervention Effectiveness */}
-      <Card className="bg-card border border-card-border shadow-medium p-6">
-        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center">
-          <AlertTriangle className="h-5 w-5 mr-2 text-primary" />
-          Intervention Effectiveness Analysis
-        </h3>
-        <p className="text-xs text-muted-foreground mb-4">
-          Success rates of different intervention approaches - family counseling (82%) and crisis intervention (85%) show highest effectiveness
-        </p>
-        <div className="space-y-4">
-          {interventionEffectiveness.map((item, index) => (
-            <div key={item.intervention} className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="font-medium text-foreground">{item.intervention}</span>
-                <div className="text-right">
-                  <span className="text-lg font-bold text-primary">{item.success}%</span>
-                  <span className="text-sm text-muted-foreground ml-2">({item.cases} cases)</span>
-                </div>
-              </div>
-              <Progress value={item.success} className="h-2" />
-            </div>
-          ))}
-        </div>
-      </Card>
     </div>
   );
 };

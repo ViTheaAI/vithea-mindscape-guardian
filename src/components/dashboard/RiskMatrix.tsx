@@ -62,12 +62,6 @@ const RiskMatrix = ({ filters }: RiskMatrixProps) => {
         ))}
       </div>
 
-      <div className="mt-6 pt-4 border-t border-card-border">
-        <div className="text-center">
-          <span className="text-3xl font-mono font-bold text-primary">685</span>
-          <p className="text-sm text-muted-foreground">Total Students Monitored</p>
-        </div>
-      </div>
       </Card>
     </div>
   );
