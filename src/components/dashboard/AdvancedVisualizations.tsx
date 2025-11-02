@@ -31,12 +31,12 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
   ];
 
   const radarData = [
-    { subject: 'Anxiety', value: 65, fullMark: 100 },
-    { subject: 'Depression', value: 42, fullMark: 100 },
-    { subject: 'Behavioral', value: 38, fullMark: 100 },
-    { subject: 'Academic Stress', value: 78, fullMark: 100 },
-    { subject: 'Social Issues', value: 35, fullMark: 100 },
-    { subject: 'Family Concerns', value: 28, fullMark: 100 },
+    { subject: 'Anxiety', current: 65, baseline: 50 },
+    { subject: 'Depression', current: 42, baseline: 50 },
+    { subject: 'Behavioral', current: 38, baseline: 50 },
+    { subject: 'Academic Stress', current: 78, baseline: 50 },
+    { subject: 'Social Issues', current: 35, baseline: 50 },
+    { subject: 'Family Concerns', current: 28, baseline: 50 },
   ];
 
   const bubbleData = [
@@ -125,19 +125,19 @@ const AdvancedVisualizations = ({ filters }: AdvancedVisualizationsProps) => {
             <RadarChart data={radarData}>
               <PolarGrid stroke="hsl(var(--border))" />
               <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }} />
-              <PolarRadiusAxis tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }} />
+              <PolarRadiusAxis tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }} domain={[0, 100]} />
               <Radar
                 name="Baseline"
-                dataKey="fullMark"
+                dataKey="baseline"
                 stroke="hsl(var(--muted-foreground))"
                 fill="hsl(var(--muted-foreground))"
-                fillOpacity={0.05}
-                strokeWidth={1}
-                strokeDasharray="3 3"
+                fillOpacity={0.15}
+                strokeWidth={2}
+                strokeDasharray="5 5"
               />
               <Radar
                 name="Current"
-                dataKey="value"
+                dataKey="current"
                 stroke="hsl(var(--primary))"
                 fill="hsl(var(--primary))"
                 fillOpacity={0.3}
