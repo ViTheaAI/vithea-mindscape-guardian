@@ -9,11 +9,12 @@ export function WhatWeDo() {
       title: 'AI Application Development',
       description:
         'Building intelligent applications and AI-powered tools designed around specific use cases and real-world needs.',
+      clientValue: 'Turn scattered operational knowledge into instant, cited answers and eliminate hours of manual document review.',
       examples: [
-        'Intelligent applications',
-        'AI assistants',
+        'Domain assistants',
         'Document intelligence',
-        'Custom AI tools',
+        'Context-aware search',
+        'Custom internal tools',
         'AI-enabled software'
       ],
       href: '/solutions#intelligent-applications'
@@ -23,12 +24,13 @@ export function WhatWeDo() {
       title: 'Workflow Automation',
       description:
         'Turning repetitive manual processes into streamlined, software-driven workflows.',
+      clientValue: 'Connect fragmented software and eliminate error-prone copy-pasting across tools, spreadsheets, and emails.',
       examples: [
         'Process automation',
         'Information extraction',
-        'Task automation',
-        'Internal business tools',
-        'System integrations'
+        'Cross-system synchronization',
+        'Task & status dispatch',
+        'API & webhook pipelines'
       ],
       href: '/solutions#automation-systems'
     },
@@ -37,12 +39,13 @@ export function WhatWeDo() {
       title: 'AI & Technology Innovation',
       description:
         'Exploring emerging technologies and turning promising ideas into practical prototypes, systems, and applications.',
+      clientValue: 'Validate feasibility and ROI with working technical proofs of concept in weeks before committing large capital.',
       examples: [
         'AI model integration',
-        'Technical prototypes',
-        'Proofs of concept',
-        'AI deployment',
-        'Emerging AI technologies'
+        'Working prototypes (POCs)',
+        'Technical feasibility audits',
+        'Latency & cost optimization',
+        'Emerging AI technology pilots'
       ],
       href: '/solutions#ai-prototypes-poc'
     }
@@ -59,7 +62,7 @@ export function WhatWeDo() {
             Technology Built Around Real Problems.
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            We combine AI, software engineering, and emerging technologies to create practical solutions for complex operational and technology challenges.
+            We combine AI, software engineering, and emerging technologies to eliminate operational friction and deliver measurable value for your team.
           </p>
         </div>
 
@@ -78,13 +81,23 @@ export function WhatWeDo() {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-sky-200 transition-colors">
                     {cap.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                  <p className="text-sm text-slate-400 leading-relaxed mb-5">
                     {cap.description}
                   </p>
+
+                  {/* Concrete Client Benefit Callout */}
+                  <div className="p-3.5 rounded-xl bg-sky-950/30 border border-sky-500/20 mb-6">
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-sky-400 font-bold block mb-1">
+                      Business Value
+                    </span>
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      {cap.clientValue}
+                    </p>
+                  </div>
                 </div>
 
                 <div>
-                  <div className="pt-6 border-t border-white/5 mb-6">
+                  <div className="pt-5 border-t border-white/5 mb-6">
                     <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold block mb-3">
                       Selected Focus
                     </span>

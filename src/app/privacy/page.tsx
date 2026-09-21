@@ -192,7 +192,7 @@ export default function PrivacyPage() {
             </div>
             <div className="flex items-center gap-2 text-slate-300">
               <MapPin className="w-3.5 h-3.5 text-sky-400" />
-              <span>{COMPANY_INFO.location}, North America</span>
+              <span>{COMPANY_INFO.location}</span>
             </div>
             <div className="flex items-center gap-2 text-slate-300">
               <Mail className="w-3.5 h-3.5 text-sky-400" />

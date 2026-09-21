@@ -95,7 +95,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
-              ViThea is an independent AI technology company developing practical software solutions, intelligent applications, and automation tools for businesses and organizations.
+              ViThea is an independent AI technology and software solutions company. We help organizations eliminate operational friction, automate manual workflows, and build intelligent applications that deliver real, measurable value.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
