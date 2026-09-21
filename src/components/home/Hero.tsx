@@ -21,7 +21,7 @@ const SCENARIOS: SimulationScenario[] = [
     name: 'Document Intelligence',
     badge: 'OCR & Schema Parsing',
     inputTitle: 'Multi-Format Ingestion Stream',
-    rawInput: 'Document: Spec_Manifest.pdf | Status: Ingested | Fields: Vendor_ID, Timestamp, Line_Items, Total_Amount | OCR Checksum: verified',
+    rawInput: 'Document: Spec_Manifest.pdf | Status: Ingested | Fields: Vendor_ID, Timestamp, Line_Items, Total_Amount | OCR Checksum: verified | Target: Accounting_Sync',
     processingLabel: 'ViThea Vision-Entity Extraction Pipeline',
     extractedEntities: [
       { key: 'Classification', value: 'Commercial Spec' },
@@ -36,7 +36,7 @@ const SCENARIOS: SimulationScenario[] = [
     name: 'Workflow Automation',
     badge: 'Event Orchestration',
     inputTitle: 'Asynchronous Event Stream',
-    rawInput: 'Event: project.milestone.completed | Source: webhook.adapter | Payload: milestone_id=902, notify_stakeholders=true',
+    rawInput: 'Event: project.milestone.completed | Source: webhook.adapter | Payload: milestone_id=902, notify_stakeholders=true, sync_database=true',
     processingLabel: 'ViThea Queue & Dispatch Worker',
     extractedEntities: [
       { key: 'Event Type', value: 'Milestone Execution' },
@@ -51,7 +51,7 @@ const SCENARIOS: SimulationScenario[] = [
     name: 'Data Synthesis',
     badge: 'Multi-Source Telemetry',
     inputTitle: 'Operational Telemetry Feeds',
-    rawInput: 'Metrics: Latency=140ms | Queue_Depth=42 | Multi-source feeds normalized across 3 distributed service layers.',
+    rawInput: 'Metrics: Latency=140ms | Queue_Depth=42 | Multi-source feeds normalized across 3 distributed service layers without loss.',
     processingLabel: 'ViThea Correlation & Anomaly Engine',
     extractedEntities: [
       { key: 'Health Status', value: 'Operational' },
@@ -174,23 +174,27 @@ export function Hero() {
 
               <div className={`space-y-3 transition-opacity duration-200 ${isRunning ? 'opacity-40' : 'opacity-100'}`}>
                 
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                {/* Stage 1: Ingestion Pipeline - Full text display without truncation */}
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
                   <div className="flex items-center justify-between text-[11px] text-slate-400">
                     <span className="flex items-center gap-1.5 font-semibold text-slate-300">
-                      <Database className="w-3 h-3 text-slate-400" />
+                      <Database className="w-3.5 h-3.5 text-slate-400" />
                       01. Ingestion Pipeline
                     </span>
-                    <span className="text-[10px] font-mono text-slate-500">INGEST_STREAM</span>
+                    <span className="text-[10px] font-mono text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded">
+                      INGEST_STREAM
+                    </span>
                   </div>
-                  <div className="text-xs text-slate-400 font-mono bg-black/30 p-2 rounded-lg border border-white/5 line-clamp-2">
+                  <div className="text-xs text-slate-300 font-mono bg-black/40 p-2.5 rounded-lg border border-white/5 break-words whitespace-normal leading-relaxed">
                     {activeScenario.rawInput}
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-sky-950/20 border border-sky-500/25 space-y-2">
+                {/* Stage 2: Intelligence Engine */}
+                <div className="p-3.5 rounded-xl bg-sky-950/20 border border-sky-500/25 space-y-2">
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="flex items-center gap-1.5 font-semibold text-sky-300">
-                      <Cpu className="w-3 h-3 text-sky-400" />
+                      <Cpu className="w-3.5 h-3.5 text-sky-400" />
                       02. ViThea Intelligence Engine
                     </span>
                     <span className="text-[10px] font-mono text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded">
@@ -198,11 +202,11 @@ export function Hero() {
                     </span>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-1.5 pt-1">
+                  <div className="grid grid-cols-2 gap-2 pt-1">
                     {activeScenario.extractedEntities.map((ent) => (
-                      <div key={ent.key} className="bg-black/40 p-1.5 rounded border border-white/5">
-                        <span className="text-[10px] text-slate-400 block">{ent.key}</span>
-                        <span className="text-xs font-mono font-medium text-slate-200 truncate block">
+                      <div key={ent.key} className="bg-black/40 p-2 rounded-lg border border-white/5">
+                        <span className="text-[10px] text-slate-400 block font-mono">{ent.key}</span>
+                        <span className="text-xs font-mono font-medium text-slate-200 break-words block mt-0.5">
                           {ent.value}
                         </span>
                       </div>
@@ -210,18 +214,19 @@ export function Hero() {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-1.5">
+                {/* Stage 3: Automated Result */}
+                <div className="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-1.5">
                   <div className="flex items-center justify-between text-[11px] text-emerald-300">
                     <span className="flex items-center gap-1.5 font-semibold text-emerald-300">
-                      <Workflow className="w-3 h-3 text-emerald-400" />
+                      <Workflow className="w-3.5 h-3.5 text-emerald-400" />
                       03. Automated Result
                     </span>
-                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 bg-emerald-500/10 px-1.5 py-0.5 rounded">
                       <CheckCircle className="w-3 h-3" />
                       EXECUTED
                     </span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  <p className="text-xs text-slate-200 leading-relaxed font-sans">
                     {activeScenario.outputAction}
                   </p>
                 </div>

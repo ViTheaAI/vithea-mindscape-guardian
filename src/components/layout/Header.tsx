@@ -52,13 +52,8 @@ export function Header() {
           })}
         </nav>
 
-        {/* Action CTAs & Status Beacon */}
+        {/* Action CTAs */}
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Available for Q4 Projects</span>
-          </div>
-
           <Link
             href="/contact"
             className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold transition-all shadow-md shadow-sky-500/20 hover:shadow-sky-400/30 hover:-translate-y-0.5"
@@ -90,10 +85,6 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-2 rounded-2xl border border-white/10 bg-[#090f20]/95 backdrop-blur-2xl p-5 space-y-3 shadow-2xl">
-          <div className="flex items-center gap-2 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400 w-fit mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Available for Q4 Projects</span>
-          </div>
           {MAIN_NAV.map((item) => (
             <Link
               key={item.href}
