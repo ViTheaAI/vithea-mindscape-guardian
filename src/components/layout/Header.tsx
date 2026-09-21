@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/ui/Logo';
@@ -9,26 +9,41 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#070b14]/80 backdrop-blur-md border-b border-white/5 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
+      <div
+        className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-4 sm:px-6 h-16 flex items-center justify-between border ${
+          scrolled
+            ? 'bg-[#060a17]/90 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/60'
+            : 'bg-[#080e1c]/60 backdrop-blur-md border-white/5'
+        }`}
+      >
         {/* Brand */}
         <Logo showTagline={true} />
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/5 rounded-full px-3 py-1">
           {MAIN_NAV.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3.5 py-2 rounded-md text-sm font-medium transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
                   isActive
-                    ? 'text-sky-400 bg-white/[0.04]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/[0.02]'
+                    ? 'text-sky-400 bg-sky-500/10 font-semibold'
+                    : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
                 }`}
               >
                 {item.label}
@@ -37,20 +52,19 @@ export function Header() {
           })}
         </nav>
 
-        {/* Action CTAs */}
+        {/* Action CTAs & Status Beacon */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/solutions"
-            className="text-xs font-medium text-slate-400 hover:text-slate-200 px-3 py-2 transition-colors"
-          >
-            Explore Solutions
-          </Link>
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Available for Q4 Projects</span>
+          </div>
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-sm font-semibold transition-all shadow-md shadow-sky-500/20 hover:shadow-sky-400/30 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold transition-all shadow-md shadow-sky-500/20 hover:shadow-sky-400/30 hover:-translate-y-0.5"
           >
             <span>Start a Project</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -58,48 +72,45 @@ export function Header() {
         <div className="flex md:hidden items-center gap-2">
           <Link
             href="/contact"
-            className="px-3 py-1.5 rounded-md bg-sky-500 text-slate-950 text-xs font-semibold"
+            className="px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 text-xs font-semibold"
           >
             Start
           </Link>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-400 hover:text-white rounded-lg focus:outline-none"
+            className="p-1.5 text-slate-300 hover:text-white rounded-lg focus:outline-none"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-white/10 bg-[#0a101f] px-4 pt-3 pb-6 space-y-2">
+        <div className="md:hidden mt-2 rounded-2xl border border-white/10 bg-[#090f20]/95 backdrop-blur-2xl p-5 space-y-3 shadow-2xl">
+          <div className="flex items-center gap-2 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400 w-fit mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Available for Q4 Projects</span>
+          </div>
           {MAIN_NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-sky-400 hover:bg-white/5"
+              className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-sky-400 hover:bg-white/5"
             >
               {item.label}
             </Link>
           ))}
-          <div className="pt-4 border-t border-white/10 flex flex-col gap-2">
+          <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-lg bg-sky-500 text-slate-950 font-semibold text-sm"
+              className="w-full text-center py-2.5 rounded-lg bg-sky-500 text-slate-950 font-semibold text-xs"
             >
               Start a Project
-            </Link>
-            <Link
-              href="/solutions"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2 text-slate-400 hover:text-white text-xs font-medium"
-            >
-              Explore Solutions
             </Link>
           </div>
         </div>
