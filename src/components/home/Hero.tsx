@@ -19,47 +19,47 @@ const SCENARIOS: SimulationScenario[] = [
   {
     id: 'document-intelligence',
     name: 'Document Intelligence',
-    badge: 'OCR & Parsing Pipeline',
-    inputTitle: 'Raw Business Document (PDF / Scan)',
-    rawInput: 'Vendor: Apex Logistics | Inv #4092 | Date: Sept 18 | Line Items: Fleet Dispatch ($1,250.00), Fuel Surcharge ($120.00) | Net Total: $1,370.00',
-    processingLabel: 'ViThea Vision-Entity Extraction',
+    badge: 'OCR & Schema Parsing',
+    inputTitle: 'Multi-Format Ingestion Stream',
+    rawInput: 'Document: Spec_Manifest.pdf | Status: Ingested | Fields: Vendor_ID, Timestamp, Line_Items, Total_Amount | OCR Checksum: verified',
+    processingLabel: 'ViThea Vision-Entity Extraction Pipeline',
     extractedEntities: [
-      { key: 'Entity', value: 'Apex Logistics Corp' },
-      { key: 'Invoice ID', value: '#4092 (Verified)' },
-      { key: 'Extracted Total', value: '$1,370.00 CAD' },
+      { key: 'Classification', value: 'Commercial Spec' },
+      { key: 'Key Entities', value: 'Extracted & Sanitized' },
+      { key: 'Validation', value: 'Schema Conformance Passed' },
       { key: 'Confidence', value: '99.4%' }
     ],
-    outputAction: 'Formatted structured JSON dispatched to internal operations system and ERP schema.'
+    outputAction: 'Sanitized JSON schema dispatched to downstream ERP and internal database tables.'
   },
   {
     id: 'workflow-automation',
-    name: 'Workflow Assistant',
-    badge: 'Unstructured Chat → Milestone',
-    inputTitle: 'Field Communication / Message Stream',
-    rawInput: '"Hey Iris, client signed off on adding recessed lighting to the master bed. Extra $850 approved, materials arriving Thursday."',
-    processingLabel: 'ViThea NLP Intent & Milestone Pipeline',
+    name: 'Workflow Automation',
+    badge: 'Event Orchestration',
+    inputTitle: 'Asynchronous Event Stream',
+    rawInput: 'Event: project.milestone.completed | Source: webhook.adapter | Payload: milestone_id=902, notify_stakeholders=true',
+    processingLabel: 'ViThea Queue & Dispatch Worker',
     extractedEntities: [
-      { key: 'Action Item', value: 'Scope Change Order' },
-      { key: 'Milestone Value', value: '+$850.00' },
-      { key: 'Delivery Target', value: 'Thursday' },
-      { key: 'Notification', value: 'Client reminder queued' }
+      { key: 'Event Type', value: 'Milestone Execution' },
+      { key: 'Retry Strategy', value: 'Exponential Backoff' },
+      { key: 'Target Services', value: 'CRM, Calendar, Alerts' },
+      { key: 'Audit Log', value: 'Recorded in Ledger' }
     ],
-    outputAction: 'Created calendar milestone, updated project scope register, and queued payment trigger.'
+    outputAction: 'Executed cross-system state updates and queued automated stakeholder confirmations.'
   },
   {
     id: 'operational-data',
     name: 'Data Synthesis',
-    badge: 'Multi-Source Aggregation',
-    inputTitle: 'Disparate Systems & Operational Feeds',
-    rawInput: 'Telemetry: 14 service tickets pending | Inventory: 3 spare units | Vendor latency spiked 34% in Northeast zone.',
-    processingLabel: 'ViThea Anomaly & Trend Correlation',
+    badge: 'Multi-Source Telemetry',
+    inputTitle: 'Operational Telemetry Feeds',
+    rawInput: 'Metrics: Latency=140ms | Queue_Depth=42 | Multi-source feeds normalized across 3 distributed service layers.',
+    processingLabel: 'ViThea Correlation & Anomaly Engine',
     extractedEntities: [
-      { key: 'Status Summary', value: 'Supply Bottleneck Detected' },
-      { key: 'Root Cause', value: 'Vendor fulfillment delay' },
-      { key: 'Risk Score', value: 'Moderate' },
-      { key: 'Recommendation', value: 'Re-route buffer inventory' }
+      { key: 'Health Status', value: 'Operational' },
+      { key: 'Anomaly Filter', value: '0 Critical Violations' },
+      { key: 'Trend Score', value: 'Stable Performance' },
+      { key: 'Visibility', value: 'Real-Time Sync' }
     ],
-    outputAction: 'Surfaced actionable executive brief and automated preventative dispatch.'
+    outputAction: 'Surfaced actionable executive telemetry brief and scheduled automated summaries.'
   }
 ];
 
@@ -70,19 +70,17 @@ export function Hero() {
   const handleSimulate = (scenario: SimulationScenario) => {
     setActiveScenario(scenario);
     setIsRunning(true);
-    setTimeout(() => setIsRunning(false), 400);
+    setTimeout(() => setIsRunning(false), 300);
   };
 
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-grid-tech">
-      {/* Ambient Radial Lights */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] ambient-glow-cyan pointer-events-none" />
       <div className="absolute top-32 right-0 w-[500px] h-[350px] ambient-glow-purple pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Core Positioning Copy */}
           <div className="lg:col-span-7 space-y-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-sky-400">
               <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
@@ -97,7 +95,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
-              ViThea is an independent AI technology company developing intelligent software, automation solutions, and innovative applications for businesses and organizations across diverse industries.
+              ViThea is an independent AI technology company developing practical software solutions, intelligent applications, and automation tools for businesses and organizations.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -109,36 +107,33 @@ export function Hero() {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/solutions"
+                href="/capabilities"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-slate-200 font-medium text-sm transition-all"
               >
-                <span>Explore Our Solutions</span>
+                <span>Explore Technical Capabilities</span>
                 <ArrowRight className="w-4 h-4 text-slate-400" />
               </Link>
             </div>
 
-            {/* Technical Trust Strip */}
             <div className="pt-6 border-t border-white/5 flex flex-wrap items-center gap-6 text-xs text-slate-400 font-mono">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                Problem-first architecture
+                Problem-first approach
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                Production-ready software
+                Production-ready code
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                Multi-industry applicability
+                Confidentiality assured
               </span>
             </div>
           </div>
 
-          {/* Right Column: Scale AI & Cognition Style Interactive Pipeline Sandbox */}
           <div className="lg:col-span-5 relative">
             <div className="rounded-2xl p-5 sm:p-6 bg-gradient-to-b from-[#0b1224]/95 via-[#080d1a]/95 to-[#060a14]/95 border border-white/15 shadow-2xl backdrop-blur-2xl">
               
-              {/* Window Titlebar */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
@@ -146,7 +141,7 @@ export function Hero() {
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
                   <span className="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
                     <Terminal className="w-3.5 h-3.5 text-sky-400" />
-                    vithea-runtime.v2
+                    vithea-runtime.pipeline
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -155,10 +150,9 @@ export function Hero() {
                 </span>
               </div>
 
-              {/* Scenario Toggle Pills (Interactive Sandbox) */}
               <div className="pt-4 pb-3">
                 <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                  Interactive Pipeline Demonstration
+                  Interactive Pipeline Architecture
                 </div>
                 <div className="grid grid-cols-3 gap-1.5 bg-black/40 p-1 rounded-xl border border-white/5">
                   {SCENARIOS.map((sc) => (
@@ -178,24 +172,21 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Live Flow Stages */}
               <div className={`space-y-3 transition-opacity duration-200 ${isRunning ? 'opacity-40' : 'opacity-100'}`}>
                 
-                {/* Stage 1: Ingest */}
                 <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
                   <div className="flex items-center justify-between text-[11px] text-slate-400">
                     <span className="flex items-center gap-1.5 font-semibold text-slate-300">
                       <Database className="w-3 h-3 text-slate-400" />
-                      01. Operational Ingestion
+                      01. Ingestion Pipeline
                     </span>
-                    <span className="text-[10px] font-mono text-slate-500">RAW_PAYLOAD</span>
+                    <span className="text-[10px] font-mono text-slate-500">INGEST_STREAM</span>
                   </div>
                   <div className="text-xs text-slate-400 font-mono bg-black/30 p-2 rounded-lg border border-white/5 line-clamp-2">
                     {activeScenario.rawInput}
                   </div>
                 </div>
 
-                {/* Stage 2: Intelligence & Extraction */}
                 <div className="p-3 rounded-xl bg-sky-950/20 border border-sky-500/25 space-y-2">
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="flex items-center gap-1.5 font-semibold text-sky-300">
@@ -219,7 +210,6 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Stage 3: Automated Action Output */}
                 <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-1.5">
                   <div className="flex items-center justify-between text-[11px] text-emerald-300">
                     <span className="flex items-center gap-1.5 font-semibold text-emerald-300">
@@ -237,17 +227,16 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Bottom bar */}
               <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
                 <span className="text-slate-400 flex items-center gap-1.5">
                   <Play className="w-3 h-3 text-sky-400 fill-sky-400" />
-                  Click tabs above to switch pipelines
+                  Click tabs to preview pipeline
                 </span>
                 <Link
-                  href="/solutions"
+                  href="/capabilities"
                   className="text-sky-400 hover:text-sky-300 font-medium flex items-center gap-1"
                 >
-                  <span>All capabilities</span>
+                  <span>All architectures</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
