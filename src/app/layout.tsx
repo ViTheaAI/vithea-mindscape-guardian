@@ -57,15 +57,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+      { url: '/favicon.ico?v=vithea-3', sizes: 'any' },
+      { url: '/icon.svg?v=vithea-3', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png?v=vithea-3', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png?v=vithea-3', sizes: '16x16', type: 'image/png' }
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+      { url: '/apple-touch-icon.png?v=vithea-3', sizes: '180x180', type: 'image/png' }
     ],
-    shortcut: '/favicon.ico'
+    shortcut: '/favicon.ico?v=vithea-3'
   }
 };
 
@@ -76,6 +76,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=vithea-3" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=vithea-3" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=vithea-3" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg?v=vithea-3" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=vithea-3" />
+      </head>
       <body className="bg-[#070b14] text-slate-100 antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
         <Header />
         <main className="flex-1">
