@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { CheckCircle2, ShieldCheck, MapPin } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/navigation';
 
@@ -65,12 +66,18 @@ export default function AboutPage() {
             <div className="rounded-3xl p-7 bento-card space-y-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-500/30 to-blue-600/20 border border-sky-400/30 flex items-center justify-center text-sky-300 font-bold text-lg">
-                    IO
+                  <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0e1d2e] via-[#07111c] to-[#040911] border border-sky-400/30 flex items-center justify-center p-2.5 shadow-lg shadow-sky-950/50">
+                    <Image
+                      src="/vithea-mark.png"
+                      alt="ViThea"
+                      width={28}
+                      height={28}
+                      className="object-contain drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">Iris Ou</h3>
-                    <p className="text-xs text-sky-400 font-medium">Founder & Technology Lead</p>
+                    <h3 className="text-base font-bold text-white">ViThea Core Practice</h3>
+                    <p className="text-xs text-sky-400 font-medium">Engineering & Applied AI</p>
                   </div>
                 </div>
                 <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
@@ -80,7 +87,7 @@ export default function AboutPage() {
               </div>
 
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                <strong>Founded by Iris Ou, ViThea brings together a background in technology, data, business, and product development to explore practical applications of artificial intelligence.</strong>
+                <strong>ViThea brings together multidisciplinary capabilities across software architecture, operational data systems, and practical artificial intelligence to build dependable, production-grade solutions.</strong>
               </p>
 
               <div className="pt-2 border-t border-white/5 flex items-center gap-2 text-xs text-slate-400">
