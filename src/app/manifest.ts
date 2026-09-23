@@ -1,0 +1,48 @@
+import type { MetadataRoute } from 'next';
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'ViThea — Independent AI Technology',
+    short_name: 'ViThea',
+    description:
+      'ViThea is an independent AI technology company developing practical software solutions, intelligent applications, and automation systems.',
+    start_url: '/',
+    id: '/',
+    display: 'standalone',
+    background_color: '#040711',
+    theme_color: '#040711',
+    orientation: 'portrait-primary',
+    scope: '/',
+    icons: [
+      {
+        src: '/favicon-16x16.png?v=vithea-3',
+        sizes: '16x16',
+        type: 'image/png'
+      },
+      {
+        src: '/favicon-32x32.png?v=vithea-3',
+        sizes: '32x32',
+        type: 'image/png'
+      },
+      {
+        src: '/icon-192x192.png?v=vithea-3',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: '/icon-512x512.png?v=vithea-3',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: '/icon-512x512.png?v=vithea-3',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable'
+      }
+    ],
+    categories: ['productivity', 'business', 'utilities']
+  };
+}

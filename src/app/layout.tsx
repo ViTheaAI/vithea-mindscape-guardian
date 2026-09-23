@@ -1,7 +1,17 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
+import { PwaRegistrar } from '@/components/pwa/PwaRegistrar';
+
+export const viewport: Viewport = {
+  themeColor: '#040711',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover'
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vithea.online'),
@@ -66,6 +76,15 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png?v=vithea-3', sizes: '180x180', type: 'image/png' }
     ],
     shortcut: '/favicon.ico?v=vithea-3'
+  },
+  manifest: '/manifest.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'ViThea'
+  },
+  formatDetection: {
+    telephone: false
   }
 };
 
@@ -82,13 +101,18 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=vithea-3" />
         <link rel="icon" type="image/svg+xml" href="/icon.svg?v=vithea-3" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=vithea-3" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="bg-[#070b14] text-slate-100 antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
+        <PwaRegistrar />
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 pb-20 md:pb-0">
           {children}
         </main>
         <Footer />
+        <MobileBottomNav />
       </body>
     </html>
   );

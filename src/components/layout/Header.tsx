@@ -21,7 +21,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[calc(env(safe-area-inset-top,0px)+0.5rem)] pb-2 sm:py-4 px-3 sm:px-6">
       <div
         className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-4 sm:px-6 h-16 flex items-center justify-between border ${
           scrolled
